@@ -8,3 +8,42 @@
 }
 
 
+/* index.css - visible deep energy orbs, no background color */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+  color: #0a1630;
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(90deg, #0a1630, #0055ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* particle style */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #00c3ff 0%, #0066ff 70%);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0.9; }
+  50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+  100% { transform: translateY(0) translateX(0); opacity: 0.9; }
+}
