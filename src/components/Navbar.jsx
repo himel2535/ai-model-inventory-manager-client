@@ -39,7 +39,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to={"/"} className="flex items-center gap-1 text-xl font-bold">
+        <Link to={"/"} className="flex items-center gap-1 md:text-xl font-bold">
           <img className="w-9 h-9 rounded-full" src={logo} alt="" />
           <h2>AI MODELS</h2>
         </Link>
