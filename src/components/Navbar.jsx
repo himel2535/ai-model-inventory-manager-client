@@ -1,8 +1,21 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/idea.png";
+import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const { user, signOutUser } = use(AuthContext);
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(toast("Logout successfully"))
+      .catch((error) => {
+        console.log(error.massage);
+        toast(error.massage);
+      });
+  };
+
   return (
     <div className="navbar py-0 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
       <div className="navbar-start">
@@ -40,8 +53,14 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to={"/"} className="flex items-center gap-1 md:text-xl font-bold">
-          <img className="w-9 h-9 rounded-full" src={logo} alt="" />
-          <h2>AI MODELS</h2>
+          <img
+            className="w-10 h-10 rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851]"
+            src={logo}
+            alt=""
+          />
+          <h2 className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
+            MODELS INVENTORY
+          </h2>
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
@@ -57,22 +76,21 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      {/* <div className="navbar-end gap-3">
+      {/* ----Profile--- */}
+      <div className="navbar-end gap-3">
         {user ? (
           <div className="dropdown dropdown-end z-50">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="hover cursor-pointer !rounded-full btn-ghost btn-circle avatar"
             >
-              <div className="w-9 border-2 border-gray-300 rounded-full">
+              <div className="w-10 h-10 p-[2px] rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851] hover:scale-105 transition-transform duration-300">
                 <img
-                  alt="Tailwind CSS Navbar component"
+                  className="w-full h-full rounded-full"
+                  alt="User Avatar"
                   referrerPolicy="no-referrer"
-                  src={
-                    user.photoURL ||
-                    {logo}
-                  }
+                  src={user.photoURL || logo}
                 />
               </div>
             </div>
@@ -85,18 +103,14 @@ const Navbar = () => {
                 <li className="text-xs">{user.email}</li>
               </div>
               <li className="mt-3">
-                <Link to={"/model-purchase-page"}>
-                   Model Purchase page
-                </Link>
+                <Link to={"/model-purchase-page"}>Model Purchase page</Link>
               </li>
               <li>
-                <Link to={"/model-models-page"}>
-                   Model Models page
-                </Link>
+                <Link to={"/model-models-page"}>Model Models page</Link>
               </li>
               <li>
                 <button
-                  onClick={signOutUser}
+                  onClick={handleSignOut}
                   className="btn btn-xs text-left bg-linear-to-r from-green-500 to-blue-500 text-white"
                 >
                   Logout
@@ -105,15 +119,12 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <Link
-            to={"/auth/login"}
-            className="btn rounded-full border-gray-300  btn-sm bg-linear-to-r from-green-500 to-blue-500 text-white"
-          >
+          <Link to={"/login"} className="btn font-semibold  text-white">
             {" "}
             Login
           </Link>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
