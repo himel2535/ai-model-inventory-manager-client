@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import logo from "../assets/idea.png";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
+import fakeDP from "../assets/face.jpg"
 
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
@@ -89,8 +90,7 @@ const Navbar = () => {
                 <img
                   className="w-full h-full rounded-full"
                   alt="User Avatar"
-                  referrerPolicy="no-referrer"
-                  src={user.photoURL || logo}
+                  src={user?.photoURL || fakeDP}
                 />
               </div>
             </div>

@@ -1,13 +1,51 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const { signInWithGoogle, signInUser } = use(AuthContext);
+
+  // ----Email Sign In----
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error.massage);
+        toast("Invalid email or password", error.massage);
+      });
+  };
+
+  // ---Google Sign In---
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        toast("Login Successfully");
+      })
+      .catch((error) => {
+        console.log(error.massage);
+        toast("Something Wrong With", error.massage);
+      });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col gap-12 items-center justify-center">
+      <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center md:-mt-15 lg:-mt-20">
+        Login for <br />{" "}
+        <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
+          AI Model Inventory Manager
+        </span>
+      </h1>
       <div className="card bg-base-100  w-full mx-auto max-w-sm shrink-0 shadow-2xl border border-gray-200">
         <div className="card-body">
-          <h1 className="text-3xl font-bold text-center">Login</h1>
-          <form>
+          <form onSubmit={handleSignIn}>
             <fieldset className="fieldset">
               <label className="label">Email</label>
               <input
@@ -32,7 +70,7 @@ const Login = () => {
           </form>
 
           {/* Google */}
-          <button className="btn ">
+          <button onClick={handleGoogleSignIn} className="btn ">
             <svg
               aria-label="Google logo"
               width="16"

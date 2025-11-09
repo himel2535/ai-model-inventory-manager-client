@@ -1,9 +1,29 @@
 import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Register = () => {
-  const { signInWithGoogle } = use(AuthContext);
+  const { signInWithGoogle, createUser, updateUserProfile } = use(AuthContext);
+
+  const handleEmailSignIn = (e) => {
+    e.preventDefault();
+    const displayName = e.target.displayName.value;
+    const photoURL = e.target.photoURL.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log({ displayName, photoURL, email, password });
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result);
+        updateUserProfile({ displayName, photoURL });
+      })
+      .catch((error) => {
+        console.log(error.massage);
+        toast("Email already in use", error.massage);
+      });
+  };
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -11,18 +31,22 @@ const Register = () => {
         console.log(result.user);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.massage);
+        toast("Something Wrong With", error.massage);
       });
   };
 
-  
-
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col gap-12 items-center justify-center">
+      <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center ">
+        Register for <br />{" "}
+        <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
+          AI Model Inventory Manager
+        </span>
+      </h1>
       <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
-          <h1 className="text-3xl font-bold text-center">Register</h1>
-          <form>
+          <form onSubmit={handleEmailSignIn}>
             <fieldset className="fieldset">
               {/* email field */}
               <label className="label">Name</label>
