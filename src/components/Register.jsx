@@ -1,10 +1,12 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Register = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = use(AuthContext);
+
+  const navigate=useNavigate()
 
   const handleEmailSignIn = (e) => {
     e.preventDefault();
@@ -18,6 +20,8 @@ const Register = () => {
       .then((result) => {
         console.log(result);
         updateUserProfile({ displayName, photoURL });
+        navigate("/")
+        e.target.reset()
       })
       .catch((error) => {
         console.log(error.massage);
@@ -29,6 +33,7 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        navigate("/")
       })
       .catch((error) => {
         console.log(error.massage);

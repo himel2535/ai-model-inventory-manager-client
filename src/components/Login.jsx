@@ -1,10 +1,12 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { signInWithGoogle, signInUser } = use(AuthContext);
+
+  const navigate=useNavigate()
 
   // ----Email Sign In----
   const handleSignIn = (e) => {
@@ -15,6 +17,8 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result);
+        navigate("/")
+        e.target.reset();
       })
       .catch((error) => {
         console.log(error.massage);
@@ -27,7 +31,8 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
-        toast("Login Successfully");
+        navigate("/")
+        
       })
       .catch((error) => {
         console.log(error.massage);

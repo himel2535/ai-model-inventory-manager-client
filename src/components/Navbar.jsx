@@ -3,14 +3,17 @@ import { Link, NavLink } from "react-router";
 import logo from "../assets/idea.png";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
-import fakeDP from "../assets/face.jpg"
+import fakeDP from "../assets/face.jpg";
 
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
 
   const handleSignOut = () => {
     signOutUser()
-      .then(toast("Logout successfully"))
+      .then((result) => {
+        console.log(result);
+        // toast("Logout successfully")
+      })
       .catch((error) => {
         console.log(error.massage);
         toast(error.massage);
