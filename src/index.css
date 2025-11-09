@@ -9,7 +9,7 @@
 
 
 /* index.css - visible deep energy orbs, no background color */
-.hero {
+/* .hero {
   position: relative;
   height: 100vh;
   display: flex;
@@ -32,7 +32,7 @@
 }
 
 /* particle style */
-.particle {
+/* .particle {
   position: absolute;
   width: 6px;
   height: 6px;
@@ -46,4 +46,4 @@
   0% { transform: translateY(0) translateX(0); opacity: 0.9; }
   50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
   100% { transform: translateY(0) translateX(0); opacity: 0.9; }
-}
+} */ 
