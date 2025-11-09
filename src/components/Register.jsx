@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const Register = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = use(AuthContext);
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleEmailSignIn = (e) => {
     e.preventDefault();
@@ -16,12 +16,31 @@ const Register = () => {
     const password = e.target.password.value;
     console.log({ displayName, photoURL, email, password });
 
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const isValidLength = password.length >= 6;
+
+    if (!hasUpperCase) {
+      toast.error("Password must contain at least one uppercase letter.");
+      return;
+    }
+
+    if (!hasLowerCase) {
+      toast.error("Password must contain at least one lowercase letter.");
+      return;
+    }
+
+    if (!isValidLength) {
+      toast.error("Password must be at least 6 characters long.");
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         console.log(result);
         updateUserProfile({ displayName, photoURL });
-        navigate("/")
-        e.target.reset()
+        navigate("/");
+        e.target.reset();
       })
       .catch((error) => {
         console.log(error.massage);
@@ -33,7 +52,7 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
-        navigate("/")
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.massage);
