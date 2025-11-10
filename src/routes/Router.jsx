@@ -19,6 +19,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
+        loader: ()=>fetch("http://localhost:3000/latest-models")
       },
       {
         path: "/models",
@@ -67,6 +68,7 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/models/${params.id}`),
       },
+
       {
         path: "/register",
         Component: Register,
