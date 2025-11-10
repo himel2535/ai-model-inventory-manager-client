@@ -8,6 +8,8 @@ import Login from "../components/Login";
 import AllModels from "../Pages/AllModels";
 import PrivateRoute from "./PrivateRoute";
 import ModelDetails from "../Pages/modelDetails";
+import UpdateModel from "../Pages/UpdateModel";
+import DeleteModel from "../Pages/DeleteModel";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,26 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ModelDetails></ModelDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/models/${params.id}`),
+      },
+      {
+        path: "/update-model/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateModel></UpdateModel>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/models/${params.id}`),
+      },
+      {
+        path: "/delete-model/:id",
+        element: (
+          <PrivateRoute>
+            <DeleteModel></DeleteModel>
           </PrivateRoute>
         ),
         loader: ({ params }) =>

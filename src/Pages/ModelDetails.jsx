@@ -1,9 +1,12 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, useLoaderData } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
 
 const ModelDetails = () => {
+  const { user } = use(AuthContext);
+//   console.log(user);
   const data = useLoaderData();
-  console.log(data.name);
+//   console.log(data);
 
   return (
     <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8 mt-12 md:mt-14 mb-4">
@@ -51,10 +54,21 @@ const ModelDetails = () => {
             </p>
 
             <div className="flex gap-3 mt-6">
-              <Link to={`/update-model/${data._id}`} className="btn ">
-                Update Model
+              <Link to={`/purchased-model/${data._id}`} className="btn ">
+                Purchase
               </Link>
-              <button className="btn ">Delete</button>
+              <div className="flex items-center gap-3">
+                {data.createdBy === user?.email && (
+                  <>
+                    <Link to={`/update-model/${data._id}`} className="btn ">
+                      Update
+                    </Link>
+                    <Link to={`/delete-model/${data._id}`} className="btn ">
+                      Delete
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
