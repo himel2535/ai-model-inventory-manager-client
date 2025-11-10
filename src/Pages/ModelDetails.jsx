@@ -1,12 +1,61 @@
 import React, { use } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const ModelDetails = () => {
   const { user } = use(AuthContext);
-//   console.log(user);
+  const navigate = useNavigate();
+  //   console.log(user);
   const data = useLoaderData();
-//   console.log(data);
+  //   console.log(data);
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `${data.name} will be deleted!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      customClass: {
+        confirmButton: "swal-confirm-btn",
+        cancelButton: "swal-cancel-btn",
+        popup: "swal-popup",
+      },
+      buttonsStyling: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/models/${data._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            toast("Successfully deleted this model");
+            navigate(`/models`);
+            Swal.fire({
+              title: "Deleted!",
+              text: ` has been deleted.`,
+              icon: "success",
+              confirmButtonText: "OK",
+              customClass: {
+                confirmButton: "swal-confirm-btn",
+              },
+              buttonsStyling: false,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8 mt-12 md:mt-14 mb-4">
@@ -63,9 +112,9 @@ const ModelDetails = () => {
                     <Link to={`/update-model/${data._id}`} className="btn ">
                       Update
                     </Link>
-                    <Link to={`/delete-model/${data._id}`} className="btn ">
+                    <button onClick={handleDelete} className="btn">
                       Delete
-                    </Link>
+                    </button>
                   </>
                 )}
               </div>
