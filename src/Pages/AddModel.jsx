@@ -1,8 +1,11 @@
 import React, { use } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const AddModel = () => {
   const { user } = use(AuthContext);
+  const navigate=useNavigate()
   const handleAddForm = (e) => {
     e.preventDefault();
     const formData = {
@@ -27,6 +30,9 @@ const AddModel = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        toast("Successfully added new Model");
+        navigate("/models");
+
       })
       .catch((err) => {
         console.log(err);

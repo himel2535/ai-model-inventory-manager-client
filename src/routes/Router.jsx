@@ -7,6 +7,7 @@ import Register from "../components/Register";
 import Login from "../components/Login";
 import AllModels from "../Pages/AllModels";
 import PrivateRoute from "./PrivateRoute";
+import ModelDetails from "../Pages/modelDetails";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/all-models",
+        path: "/models",
         Component: AllModels,
         loader: () => fetch("http://localhost:3000/models"),
       },
@@ -33,6 +34,16 @@ export const router = createBrowserRouter([
             <AddModel></AddModel>{" "}
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/model-details/:id",
+        element: (
+          <PrivateRoute>
+            <ModelDetails></ModelDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/models/${params.id}`),
       },
       {
         path: "/register",

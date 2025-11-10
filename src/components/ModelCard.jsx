@@ -3,7 +3,7 @@ import { Link } from "react-router";
 export const ModelCard = ({ model }) => {
   const { name, framework, useCase, image, _id } = model;
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+    <div  className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       <figure className="h-48 overflow-hidden">
         <img
           src={image}

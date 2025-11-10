@@ -49,7 +49,7 @@ const Navbar = () => {
               <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
-              <NavLink to={"/all-models"}>All Models</NavLink>
+              <NavLink to={"/models"}>All Models</NavLink>
             </li>
             <li>
               <NavLink to={"/add-model"}>Add Model</NavLink>
@@ -76,7 +76,7 @@ const Navbar = () => {
             <NavLink to={"/"}>Home</NavLink>
           </li>
           <li>
-            <NavLink to={"/all-models"}>All Models</NavLink>
+            <NavLink to={"/models"}>All Models</NavLink>
           </li>
           <li>
             <NavLink to={"/add-model"}>Add Model</NavLink>
