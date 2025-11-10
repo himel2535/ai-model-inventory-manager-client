@@ -5,6 +5,7 @@ import AddModel from "../Pages/AddModel";
 import ViewModels from "../Pages/ViewModels";
 import Register from "../components/Register";
 import Login from "../components/Login";
+import AllModels from "../Pages/AllModels";
 
 export const router = createBrowserRouter([
   {
@@ -16,12 +17,17 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/add-model",
-        Component: AddModel,
+        path: "/all-models",
+        Component: AllModels,
+        loader:()=>fetch("http://localhost:3000/models")
       },
       {
         path: "/view-models",
         Component: ViewModels,
+      },
+      {
+        path: "/add-model",
+        Component: AddModel,
       },
       {
         path: "/register",
