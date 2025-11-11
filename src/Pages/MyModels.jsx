@@ -36,7 +36,7 @@ const MyModels = () => {
 
       {/* ---Desktop View — Table--- */}
 
-      <div className="hidden md:block bg-white shadow-xl rounded-2xl border border-gray-200 overflow-hidden">
+      <div className="hidden lg:block bg-white shadow-xl rounded-2xl border border-gray-200 overflow-hidden">
         <table className="table w-full border-collapse">
           <thead className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white text-left">
             <tr>
@@ -58,7 +58,7 @@ const MyModels = () => {
       </div>
 
       {/*----Mobile View  Card--- */}
-      <div className="md:hidden grid grid-cols-1 gap-4">
+      <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-4">
         {models.map((model, index) => (
           <MyModelCard key={model._id} model={model} index={index} />
         ))}

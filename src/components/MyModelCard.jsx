@@ -6,32 +6,42 @@ const MyModelCard = ({ model }) => {
   const { _id, name, framework, useCase, createdBy, image } = model;
 
   return (
-    <div className="border border-gray-200 bg-white rounded-2xl shadow-md p-4">
-      <div className="flex items-center gap-4 mb-3">
-        <img
-          src={image}
-          alt={name}
-          className="w-20 h-20 object-cover rounded-lg shadow-sm"
-        />
-        <div>
-          <h2 className="text-xl font-semibold">{name}</h2>
+    <div className="border border-gray-200 bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between h-full">
+ 
+      <div className="flex flex-col gap-4 mb-3">
+        <div className="flex items-center justify-center">
+          <img
+            src={image}
+            alt={name}
+            className="w-3/4 h-30 object-cover rounded-lg shadow-sm"
+          />
         </div>
+        <h2 className="text-xl font-semibold text-center text-gray-800">
+          {name}
+        </h2>
       </div>
 
-      <p className="text-gray-600 mb-1">
-        <span className="font-semibold">Framework:</span> {framework}
-      </p>
-      <p className="text-gray-600 mb-1">
-        <span className="font-semibold">Use Case:</span> {useCase}
-      </p>
-      <p className="text-gray-600 mb-3">
-        <span className="font-semibold">Created By:</span> {createdBy}
-      </p>
 
-      <div className="flex justify-end">
+      <div className="flex flex-col justify-between flex-1 mt-2">
+        <p className="text-gray-600 mb-1">
+          <span className="font-semibold inline-block w-24">Framework:</span>{" "}
+          {framework}
+        </p>
+        <p className="text-gray-600 mb-1">
+          <span className="font-semibold inline-block w-24">Use Case:</span>{" "}
+          {useCase}
+        </p>
+        <p className="text-gray-600 mb-3">
+          <span className="font-semibold inline-block w-24">Created By:</span>{" "}
+          {createdBy}
+        </p>
+      </div>
+
+
+      <div className="mt-auto">
         <Link
           to={`/model-details/${_id}`}
-          className="btn text-white w-full btn-sm"
+          className="btn w-full btn-sm text-white bg-gradient-to-r from-[#1CB5E0] to-[#000851] border-none hover:scale-105 transition-transform"
         >
           View Details
         </Link>
