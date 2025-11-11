@@ -8,7 +8,7 @@ import { ModelCard } from "../components/ModelCard";
 
 const Home = () => {
   const data = useLoaderData();
-  console.log(data);
+
   return (
     <div className="">
       <Banner></Banner>

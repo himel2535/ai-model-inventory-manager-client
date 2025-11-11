@@ -3,18 +3,30 @@ import { AuthContext } from "../contexts/AuthContext";
 import MyModelCard from "../components/MyModelCard";
 import MyModelTableRow from "../components/MyModelTableRow";
 
+
 const MyModels = () => {
-  const { user } = use(AuthContext);
+  const { user, setLoading ,loading} = use(AuthContext);
   const [models, setModels] = useState([]);
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-models?email=${user.email}`)
+      fetch(`http://localhost:3000/my-models?email=${user.email}`, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
         .then((res) => res.json())
-        .then((data) => setModels(data))
+        .then((data) => {
+          setModels(data);
+          setLoading(false);
+        })
         .catch((err) => console.error("Fetch error:", err));
     }
-  }, [user]);
+  }, [user, setLoading]);
+
+  if(loading){
+    return <div>wait...</div>
+  }
 
   return (
     <div className="max-w-6xl mx-auto mt-12 p-4">
