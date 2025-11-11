@@ -10,6 +10,8 @@ import PrivateRoute from "./PrivateRoute";
 import ModelDetails from "../Pages/modelDetails";
 import UpdateModel from "../Pages/UpdateModel";
 import DeleteModel from "../Pages/DeleteModel";
+import MyModels from "../Pages/MyModels";
+import ModelPurchase from "../Pages/ModelPurchase";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +21,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: ()=>fetch("http://localhost:3000/latest-models")
+        loader: () => fetch("http://localhost:3000/latest-models"),
       },
       {
         path: "/models",
@@ -35,6 +37,22 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddModel></AddModel>{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-models",
+        element: (
+          <PrivateRoute>
+            <MyModels></MyModels>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/model-purchase-page",
+        element: (
+          <PrivateRoute>
+            <ModelPurchase></ModelPurchase>
           </PrivateRoute>
         ),
       },

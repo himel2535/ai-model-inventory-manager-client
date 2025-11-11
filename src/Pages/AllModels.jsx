@@ -7,9 +7,9 @@ const AllModels = () => {
 
   return (
     <div>
-      <h2 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12 md:mt-14 mb-4 leading-relaxed">
+      <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12  mb-4 leading-relaxed">
         All Models
-      </h2>
+      </h1>
 
       <p className="text-center max-w-2xl mx-auto text-gray-500 mb-12 px-4 leading-relaxed">
         Explore our complete collection of AI models — from creative generators

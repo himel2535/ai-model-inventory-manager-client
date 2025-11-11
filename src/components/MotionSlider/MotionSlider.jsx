@@ -56,7 +56,7 @@ const MotionSlider = () => {
   }, [page]);
 
   return (
-    <div className="slider-area">
+    <div className="slider-area ">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}

@@ -54,9 +54,9 @@ const Navbar = () => {
             <li>
               <NavLink to={"/add-model"}>Add Model</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to={"/view-models"}>View Models</NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
         <Link to={"/"} className="flex items-center gap-1 md:text-xl font-bold">
@@ -81,11 +81,12 @@ const Navbar = () => {
           <li>
             <NavLink to={"/add-model"}>Add Model</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to={"/view-models"}>View Models</NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
+
       {/* ----Profile--- */}
       <div className="navbar-end gap-3">
         {user ? (
@@ -115,12 +116,12 @@ const Navbar = () => {
                 <Link to={"/model-purchase-page"}>Model Purchase page</Link>
               </li>
               <li>
-                <Link to={"/model-models-page"}>Model Models page</Link>
+                <Link to={"/my-models"}>My Models page</Link>
               </li>
               <li>
                 <button
                   onClick={handleSignOut}
-                  className="btn btn-xs text-left bg-linear-to-r from-green-500 to-blue-500 text-white"
+                  className="btn btn-xs text-left mt-2 text-white"
                 >
                   Logout
                 </button>

@@ -41,8 +41,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col gap-12 items-center justify-center">
-      <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center md:-mt-15 lg:-mt-20">
+    <div className=" flex flex-col gap-12 items-center justify-center">
+      <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center mt-14">
         Login for <br />{" "}
         <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
           AI Model Inventory Manager
