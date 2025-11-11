@@ -81,59 +81,67 @@ const Navbar = () => {
           <li>
             <NavLink to={"/add-model"}>Add Model</NavLink>
           </li>
-          {/* <li>
-            <NavLink to={"/view-models"}>View Models</NavLink>
-          </li> */}
+
         </ul>
       </div>
 
       {/* ----Profile--- */}
       <div className="navbar-end gap-3">
-        {user ? (
-          <div className="dropdown dropdown-end z-50">
-            <div
-              tabIndex={0}
-              role="button"
-              className="hover cursor-pointer !rounded-full btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 h-10 p-[2px] rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851] hover:scale-105 transition-transform duration-300">
-                <img
-                  className="w-full h-full rounded-full"
-                  alt="User Avatar"
-                  src={user?.photoURL || fakeDP}
-                />
+        <div>
+          <input
+            type="checkbox"
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            className="toggle"
+          />
+        </div>
+        <div>
+          {" "}
+          {user ? (
+            <div className="dropdown dropdown-end z-50">
+              <div
+                tabIndex={0}
+                role="button"
+                className="hover cursor-pointer !rounded-full btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 h-10 p-[2px] rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851] hover:scale-105 transition-transform duration-300">
+                  <img
+                    className="w-full h-full rounded-full"
+                    alt="User Avatar"
+                    src={user?.photoURL || fakeDP}
+                  />
+                </div>
               </div>
+              <ul
+                tabIndex="-1"
+                className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+              >
+                <div className=" pb-3 border-b border-b-gray-200">
+                  <li className="text-sm font-bold">{user.displayName}</li>
+                  <li className="text-xs">{user.email}</li>
+                </div>
+                <li className="mt-3">
+                  <Link to={"/model-purchase-page"}>Model Purchase page</Link>
+                </li>
+                <li>
+                  <Link to={"/my-models"}>My Models page</Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleSignOut}
+                    className="btn btn-xs text-left mt-2 text-white"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex="-1"
-              className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-            >
-              <div className=" pb-3 border-b border-b-gray-200">
-                <li className="text-sm font-bold">{user.displayName}</li>
-                <li className="text-xs">{user.email}</li>
-              </div>
-              <li className="mt-3">
-                <Link to={"/model-purchase-page"}>Model Purchase page</Link>
-              </li>
-              <li>
-                <Link to={"/my-models"}>My Models page</Link>
-              </li>
-              <li>
-                <button
-                  onClick={handleSignOut}
-                  className="btn btn-xs text-left mt-2 text-white"
-                >
-                  Logout
-                </button>
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <Link to={"/login"} className="btn font-semibold  text-white">
-            {" "}
-            Login
-          </Link>
-        )}
+          ) : (
+            <Link to={"/login"} className="btn font-semibold  text-white">
+              {" "}
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
