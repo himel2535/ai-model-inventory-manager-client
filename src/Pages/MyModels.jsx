@@ -3,9 +3,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import MyModelCard from "../components/MyModelCard";
 import MyModelTableRow from "../components/MyModelTableRow";
 
-
 const MyModels = () => {
-  const { user, setLoading ,loading} = use(AuthContext);
+  const { user, setLoading, loading } = use(AuthContext);
   const [models, setModels] = useState([]);
 
   useEffect(() => {
@@ -24,15 +23,15 @@ const MyModels = () => {
     }
   }, [user, setLoading]);
 
-  if(loading){
-    return <div>wait...</div>
+  if (loading) {
+    return <div>wait...</div>;
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-12 p-4">
-      <h2 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-8 bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-transparent bg-clip-text">
+    <div className="max-w-6xl mx-auto  px-4">
+      <h1 className=" mt-12 leading-relaxed lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 text-gray-700">
         My Uploaded Models
-      </h2>
+      </h1>
 
       {/* ---Desktop View — Table--- */}
 

@@ -41,7 +41,7 @@ const AddModel = () => {
 
   return (
     <div>
-      <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12 mb-12 leading-relaxed">
+      <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12 mb-12 leading-relaxed text-gray-700">
         Add New Model
       </h1>
       <div className="min-h-screen flex items-center justify-center">

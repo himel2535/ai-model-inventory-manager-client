@@ -7,10 +7,10 @@ const Banner = () => {
     <div>
       {/* <img className='w-full mx-auto ' src={bannerLogo} alt="" /> */}
       <div className="text-center px-8 flex flex-col mt-12  leading-relaxed">
-        <h1 className=" text-center font-bold lg:text-4xl md:text-3xl text-2xl mb-3 leading-relaxed">
+        <h1 className=" text-center font-bold lg:text-4xl md:text-3xl text-2xl mb-3 leading-relaxed text-gray-700">
           Talk to Tomorrow’s Technology
         </h1>
-        <p className="leading-relaxed mb-12">
+        <p className="leading-relaxed mb-12 text-gray-500">
           Experience the future of seamless communication with AI{" "}
         </p>
       </div>

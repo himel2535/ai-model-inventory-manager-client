@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 
 const PurchaseModelTableRow = ({ model }) => {
-  const navigate = useNavigate();
+ 
 
   return (
     <tr className="border-b hover:bg-gray-50 transition duration-300">
@@ -20,12 +20,12 @@ const PurchaseModelTableRow = ({ model }) => {
       <td className="py-3 px-4 text-gray-700">{model.createdBy}</td>
       <td className="py-3 px-4 text-gray-700">{model.purchasedBy}</td>
       <td className="py-3 px-4 text-center">
-        <button
-          onClick={() => navigate(`/models/${model._id}`)}
+        <Link
+          to={`/model-details/${model._id}`}
           className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white px-4 py-2 rounded-lg hover:opacity-90 btn transition-all"
         >
           View
-        </button>
+        </Link>
       </td>
     </tr>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-// import { Link } from "react-router-dom";
+
 
 const MyModelCard = ({ model }) => {
   const { _id, name, framework, useCase, createdBy, image } = model;

@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/idea.png";
 import { AuthContext } from "../contexts/AuthContext";
@@ -19,6 +19,25 @@ const Navbar = () => {
         toast(error.massage);
       });
   };
+  
+
+    // ----Theme Toggle---
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
+  // ________________
+
 
   return (
     <div className="navbar py-0 px-8 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
@@ -81,19 +100,27 @@ const Navbar = () => {
           <li>
             <NavLink to={"/add-model"}>Add Model</NavLink>
           </li>
-
         </ul>
       </div>
 
-      {/* ----Profile--- */}
+      {/* ---Ending Part--- */}
       <div className="navbar-end gap-3">
+        {/* ---theme--- */}
         <div>
-          <input
-            type="checkbox"
-            defaultChecked={localStorage.getItem("theme") === "dark"}
-            className="toggle"
-          />
+          <li>
+            {" "}
+            <input
+              type="checkbox"
+              onClick={(e) => {
+                handleTheme(e.target.checked);
+              }}
+              defaultChecked={localStorage.getItem("theme") === "dark"}
+              className="toggle"
+            />
+          </li>
         </div>
+
+        {/* ----Profile--- */}
         <div>
           {" "}
           {user ? (
