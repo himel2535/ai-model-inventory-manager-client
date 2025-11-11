@@ -13,6 +13,8 @@ const ModelDetails = () => {
   const [model, setModel] = useState([]);
   const { id } = useParams();
 
+  const [refetch, setRefetch] = useState(false);
+
   useEffect(() => {
     fetch(`http://localhost:3000/models/${id}`, {
       headers: {
@@ -23,8 +25,9 @@ const ModelDetails = () => {
       .then((data) => {
         setModel(data);
         setLoading(false);
+        console.log(data);
       });
-  }, [id, setLoading, user]);
+  }, [id, setLoading, user, refetch]);
 
   // ---handle delete model----
   const handleDelete = () => {
@@ -75,17 +78,30 @@ const ModelDetails = () => {
   // ---handle purchased-model---
 
   const handlePurchasedModel = () => {
-    fetch(`http://localhost:3000/purchased-model`, {
+    const finalModel = {
+      name: model.name,
+      framework: model.framework,
+      useCase: model.useCase,
+      dataset: model.dataset,
+      description: model.description,
+      image: model.image,
+      purchasedBy: user.email,
+      createdBy: model.createdBy,
+      createdAt: new Date(),
+    };
+
+    fetch(`http://localhost:3000/purchased-model/${model._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...model, purchasedBy: user.email }),
+      body: JSON.stringify(finalModel),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         toast("Successfully Purchased this model");
+        setRefetch(!refetch);
       })
       .catch((err) => {
         console.log(err);
@@ -138,14 +154,13 @@ const ModelDetails = () => {
               <span className="font-semibold text-gray-700">
                 Purchased :{" "}
               </span>{" "}
-              {model.purchased}
+              <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-transparent bg-clip-text font-bold">
+                {model.purchased}{" "}
+              </span>
             </p>
 
             <div className="flex gap-3 mt-6">
-              <Link
-                onClick={handlePurchasedModel}
-                className="btn "
-              >
+              <Link onClick={handlePurchasedModel} className="btn ">
                 Purchase
               </Link>
               <div className="flex items-center gap-3">
