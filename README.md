@@ -1,9 +1,9 @@
 🧠 AI Model Inventory Manager
 🚀 Live Website
 
-🔗 Visit Live Site
+🔗 Visit Live Site --  https://ai-model-inventory-manag-45b01.web.app/
 
-🔗 Server Repo (Vercel)
+🔗 Server Repo (Vercel)  ---    https://github.com/himel2535/ai-model-inventory-manager-server
 
 📋 Project Overview
 
