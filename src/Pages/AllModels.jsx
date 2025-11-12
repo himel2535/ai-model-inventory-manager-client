@@ -1,16 +1,32 @@
-import React, { use, useState } from "react";
-import { useLoaderData } from "react-router";
+import React, { use, useEffect, useState } from "react";
+
 import { ModelCard } from "../components/ModelCard";
 import { AuthContext } from "../contexts/AuthContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const AllModels = () => {
-  const data = useLoaderData();
-  const [models, setModels] = useState(data);
+  const [models, setModels] = useState([]);
   const [framework, setFramework] = useState("");
-  const { setLoading } = use(AuthContext);
+  const { setLoading, loading } = use(AuthContext);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("http://localhost:3000/models")
+      .then((res) => res.json())
+      .then((data) => {
+        setModels(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [setLoading]);
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setLoading(true);
     const search_text = e.target.search.value;
 
     fetch(
@@ -19,9 +35,18 @@ const AllModels = () => {
       .then((res) => res.json())
       .then((data) => {
         setModels(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
         setLoading(false);
       });
   };
+
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
 
   return (
     <div>

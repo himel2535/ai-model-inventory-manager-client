@@ -1,13 +1,33 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import AboutSection from "../components/AboutSection";
 import GetStartedSection from "../components/GetStartedSection";
-import { useLoaderData } from "react-router";
 import { ModelCard } from "../components/ModelCard";
-// import Hero from "../components/Hero";
+import { AuthContext } from "../contexts/AuthContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Home = () => {
-  const data = useLoaderData();
+  const [latestModels, setLatestModels] = useState([]);
+  const { setLoading, loading } = use(AuthContext);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("http://localhost:3000/latest-models")
+      .then((res) => res.json())
+      .then((data) => {
+        setLatestModels(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [setLoading]);
+
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
 
   return (
     <div className="">
@@ -17,7 +37,7 @@ const Home = () => {
           Latest Models
         </h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7 md:gap-5 ">
-          {data.map((model) => (
+          {latestModels.map((model) => (
             <ModelCard key={model._id} model={model}></ModelCard>
           ))}
         </div>

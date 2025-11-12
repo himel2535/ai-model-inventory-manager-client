@@ -21,16 +21,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:3000/latest-models"),
+        // loader: () => fetch("http://localhost:3000/latest-models"),
       },
       {
         path: "/models",
         Component: AllModels,
-        loader: () => fetch("http://localhost:3000/models"),
-      },
-      {
-        path: "/view-models",
-        Component: ViewModels,
+        // loader: () => fetch("http://localhost:3000/models"),
       },
       {
         path: "/add-model",
@@ -71,8 +67,7 @@ export const router = createBrowserRouter([
             <UpdateModel></UpdateModel>
           </PrivateRoute>
         ),
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:3000/models/${params.id}`),
+
       },
       {
         path: "/delete-model/:id",
