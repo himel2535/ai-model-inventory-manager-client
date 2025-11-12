@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner";
 // import { toast } from "react-toastify";
 // import { toast } from "react-toastify";
 
@@ -108,7 +109,7 @@ const ModelDetails = () => {
   };
 
   if (loading) {
-    return <dev>Loading...</dev>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

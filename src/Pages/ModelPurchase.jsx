@@ -2,31 +2,40 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import PurchaseModelTableRow from "../components/PurchaseModelTableRow";
 import PurchaseModelCard from "../components/PurchaseModelCard";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ModelPurchase = () => {
-  const { user, } = use(AuthContext);
+  const { user } = use(AuthContext);
+
+  const [loading, setLoading] = useState(true);
   const [models, setModels] = useState([]);
 
   useEffect(() => {
-    if (user?.email) {
-      
-      fetch(`http://localhost:3000/model-purchase-page?email=${user.email}`, {
-        headers: {
-          authorization: `Bearer ${user.accessToken}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setModels(data);
-          // setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Fetch error:", err);
-          // setLoading(false);
-        });
-    }
-  }, [user, ]);
+    if (!user?.email) return;
 
+    const fetchPurchasedModels = async () => {
+      setLoading(true);
+      try {
+        const token = await user.getIdToken();
+        const res = await fetch(
+          `http://localhost:3000/model-purchase-page?email=${user.email}`,
+          {
+            headers: { authorization: `Bearer ${token}` },
+          }
+        );
+        const data = await res.json();
+        setModels(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPurchasedModels();
+  }, [user]);
+
+  if (loading) return <LoadingSpinner fullScreen={true} />;
 
   return (
     <div className="max-w-6xl mx-auto  px-4">

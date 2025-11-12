@@ -2,14 +2,12 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import Home from "../Pages/Home";
 import AddModel from "../Pages/AddModel";
-import ViewModels from "../Pages/ViewModels";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import AllModels from "../Pages/AllModels";
 import PrivateRoute from "./PrivateRoute";
 import ModelDetails from "../Pages/modelDetails";
 import UpdateModel from "../Pages/UpdateModel";
-import DeleteModel from "../Pages/DeleteModel";
 import MyModels from "../Pages/MyModels";
 import ModelPurchase from "../Pages/ModelPurchase";
 
@@ -21,12 +19,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        // loader: () => fetch("http://localhost:3000/latest-models"),
       },
       {
         path: "/models",
         Component: AllModels,
-        // loader: () => fetch("http://localhost:3000/models"),
       },
       {
         path: "/add-model",
@@ -67,17 +63,6 @@ export const router = createBrowserRouter([
             <UpdateModel></UpdateModel>
           </PrivateRoute>
         ),
-
-      },
-      {
-        path: "/delete-model/:id",
-        element: (
-          <PrivateRoute>
-            <DeleteModel></DeleteModel>
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/models/${params.id}`),
       },
 
       {

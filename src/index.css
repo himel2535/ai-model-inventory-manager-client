@@ -11,10 +11,7 @@
   themes: light --default, dark --prefersdark;
 }
 
-
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 
 .btn {
   @apply text-white font-semibold py-2 px-4 rounded-lg transition duration-300 border-none;
@@ -28,9 +25,9 @@
 
 .center-toast {
   position: fixed;
-  top: 50%;
+  top: 30px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
   color: white;
   padding: 12px 24px;
@@ -66,7 +63,7 @@
 }
 
 .swal-cancel-btn {
-  background: linear-gradient(90deg,#1cb5e0 0%, #000851 100%) !important;
+  background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%) !important;
   color: white !important;
   border: none !important;
   border-radius: 8px !important;
@@ -87,7 +84,4 @@
   cursor: pointer !important;
 }
 
-
-
 /* ----navlink active--- */
-

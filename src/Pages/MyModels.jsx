@@ -2,29 +2,43 @@ import React, { useEffect, useState, use } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import MyModelCard from "../components/MyModelCard";
 import MyModelTableRow from "../components/MyModelTableRow";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const MyModels = () => {
-  const { user, setLoading, loading } = use(AuthContext);
+  const { user, } = use(AuthContext);
+  const [loading,setLoading]=useState(true)
   const [models, setModels] = useState([]);
 
   useEffect(() => {
-    if (user?.email) {
-      fetch(`http://localhost:3000/my-models?email=${user.email}`, {
-        headers: {
-          authorization: `Bearer ${user.accessToken}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setModels(data);
-          setLoading(false);
-        })
-        .catch((err) => console.error("Fetch error:", err));
-    }
+    const fetchMyModels = async () => {
+      setLoading(true)
+      if (!user?.email) return;
+
+      setLoading(true); 
+      try {
+        const token = await user.getIdToken(); 
+        const res = await fetch(
+          `http://localhost:3000/my-models?email=${user.email}`,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await res.json();
+        setModels(data);
+      } catch (err) {
+        console.error("Fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMyModels();
   }, [user, setLoading]);
 
   if (loading) {
-    return <div>wait...</div>;
+    return <LoadingSpinner fullScreen={true} />; 
   }
 
   return (
