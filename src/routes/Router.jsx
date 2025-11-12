@@ -10,6 +10,7 @@ import ModelDetails from "../Pages/modelDetails";
 import UpdateModel from "../Pages/UpdateModel";
 import MyModels from "../Pages/MyModels";
 import ModelPurchase from "../Pages/ModelPurchase";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -74,5 +75,9 @@ export const router = createBrowserRouter([
         Component: Login,
       },
     ],
+  },
+  {
+    path: "*",
+    Component: ErrorPage,
   },
 ]);

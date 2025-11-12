@@ -5,7 +5,7 @@ const LoadingLine = ({ fullScreen = false }) => {
     <div
       className={`${
         fullScreen
-          ? "fixed top-0 left-0 w-full h-screen flex items-center justify-center bg-white/80 z-50"
+          ? "fixed top-0 left-0 object-cover w-full h-screen flex items-center justify-center bg-white/80 z-50"
           : "w-full"
       }`}
     >

@@ -18,7 +18,7 @@ const Register = () => {
     const photoURL = e.target.photoURL.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log({ displayName, photoURL, email, password });
+
 
     const hasUpperCase = /[A-Z]/.test(password);
     const hasLowerCase = /[a-z]/.test(password);

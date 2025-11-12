@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../contexts/AuthContext";
 import LoadingLine from "../components/LoadingLine";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const UpdateModel = () => {
   const navigate = useNavigate();
@@ -14,10 +15,9 @@ const UpdateModel = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const [modelData, setModelData] = useState(null);
-  
+
   const { dataset, description, framework, image, name, useCase } =
     modelData || {};
-
 
   useEffect(() => {
     if (user?.accessToken && id) {
@@ -43,15 +43,13 @@ const UpdateModel = () => {
     }
   }, [user, id]);
 
-
   if (loading) {
-    return <LoadingLine fullScreen={true} />;
+    return <LoadingSpinner fullScreen={true} />;
   }
-
 
   const handleUpdateForm = (e) => {
     e.preventDefault();
-    setSubmitting(true); 
+    setSubmitting(true);
 
     const formData = {
       name: e.target.name.value,
@@ -72,7 +70,7 @@ const UpdateModel = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         toast.success("Successfully Updated This Model!");
         navigate(`/model-details/${id}`);
       })
@@ -80,7 +78,7 @@ const UpdateModel = () => {
         console.error(err);
         toast.error("Update failed.");
       })
-      .finally(() => setSubmitting(false)); 
+      .finally(() => setSubmitting(false));
   };
 
   return (
@@ -181,7 +179,7 @@ const UpdateModel = () => {
               </button>
 
               {submitting && (
-                <div className="mt-4">
+                <div className="mt-4 w-full flex items-center justify-center text-center">
                   <LoadingLine />
                 </div>
               )}

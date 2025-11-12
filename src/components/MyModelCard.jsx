@@ -6,7 +6,7 @@ const MyModelCard = ({ model }) => {
   const { _id, name, framework, useCase, createdBy, image } = model;
 
   return (
-    <div className="border border-gray-200 bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between h-full">
+    <div className="border border-gray-200 bg-white rounded-2xl shadow-md mx-6 p-4 flex flex-col justify-between h-full">
  
       <div className="flex flex-col gap-4 mb-3">
         <div className="flex items-center justify-center">

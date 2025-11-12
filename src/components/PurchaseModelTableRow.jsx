@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 
-
 const PurchaseModelTableRow = ({ model }) => {
- 
+  console.log(model);
 
   return (
     <tr className="border-b hover:bg-gray-50 transition duration-300">
@@ -21,7 +20,7 @@ const PurchaseModelTableRow = ({ model }) => {
       <td className="py-3 px-4 text-gray-700">{model.purchasedBy}</td>
       <td className="py-3 px-4 text-center">
         <Link
-          to={`/model-details/${model._id}`}
+          to={`/model-details/${model.modelId}`}
           className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white px-4 py-2 rounded-lg hover:opacity-90 btn transition-all"
         >
           View

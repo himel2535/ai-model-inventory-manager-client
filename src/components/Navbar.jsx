@@ -5,7 +5,6 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import fakeDP from "../assets/face.jpg";
 
-
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
 
@@ -38,9 +37,9 @@ const Navbar = () => {
   // ________________
 
   return (
-    <div className="navbar py-0 px-8 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
-      <div className="navbar-start">
-        <div className="dropdown">
+    <div className="navbar py-1 px-8 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
+      <div className="navbar-start ">
+        <div className="dropdown mr-3">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -67,14 +66,17 @@ const Navbar = () => {
               <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
-              <NavLink to={"/models"}>All Models</NavLink>
+              <NavLink to={"/models"}>View Models</NavLink>
             </li>
             <li>
               <NavLink to={"/add-model"}>Add Model</NavLink>
             </li>
           </ul>
         </div>
-        <Link to={"/"} className="flex items-center gap-1 md:text-xl font-bold">
+        <Link
+          to={"/"}
+          className="flex items-center gap-2  md:text-xl font-bold"
+        >
           <img
             className="w-10 h-10 rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851]"
             src={logo}
@@ -91,7 +93,7 @@ const Navbar = () => {
             <NavLink to={"/"}>Home</NavLink>
           </li>
           <li>
-            <NavLink to={"/models"}>All Models</NavLink>
+            <NavLink to={"/models"}>View Models</NavLink>
           </li>
           <li>
             <NavLink to={"/add-model"}>Add Model</NavLink>
@@ -101,7 +103,7 @@ const Navbar = () => {
 
       {/* ---Ending Part--- */}
       <div className="navbar-end gap-3">
-        {/* ---theme--- */}
+        {/* ---theme toggle--- */}
         <div>
           {" "}
           <input
@@ -110,7 +112,7 @@ const Navbar = () => {
               handleTheme(e.target.checked);
             }}
             defaultChecked={localStorage.getItem("theme") === "dark"}
-            className="toggle "
+            className="toggle toggle-xs"
           />
         </div>
 
