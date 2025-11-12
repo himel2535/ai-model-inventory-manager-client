@@ -25,7 +25,6 @@ const ModelDetails = () => {
       .then((data) => {
         setModel(data);
         setLoading(false);
-        console.log(data);
       });
   }, [id, setLoading, user, refetch]);
 

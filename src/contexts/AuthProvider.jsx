@@ -7,9 +7,10 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile as firebaseUpdateProfile
+  updateProfile as firebaseUpdateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -53,6 +54,10 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
+
+  // if (loading) {
+  //   return <LoadingSpinner fullScreen={true} />;
+  // }
 
   const authInfo = {
     createUser,

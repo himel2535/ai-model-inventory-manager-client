@@ -5,6 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import fakeDP from "../assets/face.jpg";
 
+
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
 
@@ -19,9 +20,8 @@ const Navbar = () => {
         toast(error.massage);
       });
   };
-  
 
-    // ----Theme Toggle---
+  // ----Theme Toggle---
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
@@ -31,13 +31,11 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
   };
 
   // ________________
-
 
   return (
     <div className="navbar py-0 px-8 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
@@ -60,6 +58,7 @@ const Navbar = () => {
               />{" "}
             </svg>
           </div>
+          {/* ----Route---- */}
           <ul
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
@@ -73,9 +72,6 @@ const Navbar = () => {
             <li>
               <NavLink to={"/add-model"}>Add Model</NavLink>
             </li>
-            {/* <li>
-              <NavLink to={"/view-models"}>View Models</NavLink>
-            </li> */}
           </ul>
         </div>
         <Link to={"/"} className="flex items-center gap-1 md:text-xl font-bold">
@@ -107,17 +103,15 @@ const Navbar = () => {
       <div className="navbar-end gap-3">
         {/* ---theme--- */}
         <div>
-          <li>
-            {" "}
-            <input
-              type="checkbox"
-              onClick={(e) => {
-                handleTheme(e.target.checked);
-              }}
-              defaultChecked={localStorage.getItem("theme") === "dark"}
-              className="toggle"
-            />
-          </li>
+          {" "}
+          <input
+            type="checkbox"
+            onClick={(e) => {
+              handleTheme(e.target.checked);
+            }}
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            className="toggle "
+          />
         </div>
 
         {/* ----Profile--- */}

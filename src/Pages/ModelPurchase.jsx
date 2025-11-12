@@ -4,11 +4,12 @@ import PurchaseModelTableRow from "../components/PurchaseModelTableRow";
 import PurchaseModelCard from "../components/PurchaseModelCard";
 
 const ModelPurchase = () => {
-  const { user, setLoading, loading } = use(AuthContext);
+  const { user, } = use(AuthContext);
   const [models, setModels] = useState([]);
 
   useEffect(() => {
     if (user?.email) {
+      
       fetch(`http://localhost:3000/model-purchase-page?email=${user.email}`, {
         headers: {
           authorization: `Bearer ${user.accessToken}`,
@@ -17,19 +18,15 @@ const ModelPurchase = () => {
         .then((res) => res.json())
         .then((data) => {
           setModels(data);
-          setLoading(false);
+          // setLoading(false);
         })
-        .catch((err) => console.error("Fetch error:", err));
+        .catch((err) => {
+          console.error("Fetch error:", err);
+          // setLoading(false);
+        });
     }
-  }, [user, setLoading]);
+  }, [user, ]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-[70vh]">
-        <h2 className="text-2xl font-semibold text-gray-700">Loading...</h2>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-6xl mx-auto  px-4">

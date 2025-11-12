@@ -1,12 +1,17 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import LoadingLine from "../components/LoadingLine";
 
 const AddModel = () => {
   const { user } = use(AuthContext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
+
   const handleAddForm = (e) => {
+    setSubmitting(true);
+
     e.preventDefault();
     const formData = {
       name: e.target.name.value,
@@ -32,16 +37,18 @@ const AddModel = () => {
         console.log(data);
         toast("Successfully added new Model");
         navigate("/models");
-
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setSubmitting(false);
       });
   };
 
   return (
     <div>
-      <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12 mb-12 leading-relaxed text-gray-700">
+      <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12 mb-9 leading-relaxed text-gray-700">
         Add New Model
       </h1>
       <div className="min-h-screen flex items-center justify-center">
@@ -73,28 +80,6 @@ const AddModel = () => {
                 />
               </div>
 
-              {/* Category Dropdown */}
-              {/* <div>
-                <label className="label font-medium">Category</label>
-                <select
-                  defaultValue={""}
-                  name="category"
-                  required
-                  className="select w-full rounded-lg focus:border-0 focus:outline-gray-200"
-                >
-                  <option value="" disabled>
-                    Select category
-                  </option>
-                  <option value="Vehicles">Vehicles</option>
-                  <option value="Plants">Plants</option>
-                  <option value="Foods">Foods</option>
-                  <option value="Home & Living">Home & Living</option>
-                  <option value="Characters">Characters</option>
-                  <option value="Space">Space</option>
-                  <option value="Animals">Animals</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div> */}
 
               {/* ---UseCae--- */}
 
@@ -147,9 +132,19 @@ const AddModel = () => {
               </div>
 
               {/* Submit Button */}
-              <button type="submit" className="btn w-full mt-6">
-                Add Model
+              <button
+                type="submit"
+                className="btn w-full mt-6"
+                disabled={submitting}
+              >
+                {submitting ? "Adding" : "Add Model"}
               </button>
+
+              {submitting && (
+                <div className="mt-4">
+                  <LoadingLine></LoadingLine>
+                </div>
+              )}
             </form>
           </div>
         </div>

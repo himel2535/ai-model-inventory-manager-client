@@ -1,16 +1,58 @@
-import React from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../contexts/AuthContext";
+import LoadingLine from "../components/LoadingLine";
 
 const UpdateModel = () => {
-  const data = useLoaderData();
-  const navigate=useNavigate()
-//   console.log(data);
-  const { dataset, description, framework, image, name, useCase,_id } = data;
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { user } = use(AuthContext);
+
+  const [loading, setLoading] = useState(true);
+
+  const [submitting, setSubmitting] = useState(false);
+
+  const [modelData, setModelData] = useState(null);
+  
+  const { dataset, description, framework, image, name, useCase } =
+    modelData || {};
+
+
+  useEffect(() => {
+    if (user?.accessToken && id) {
+      setLoading(true);
+      fetch(`http://localhost:3000/models/${id}`, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch model details");
+          return res.json();
+        })
+        .then((data) => {
+          setModelData(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Fetch error:", err);
+          toast.error("Failed to load model data.");
+          setLoading(false);
+        });
+    }
+  }, [user, id]);
+
+
+  if (loading) {
+    return <LoadingLine fullScreen={true} />;
+  }
 
 
   const handleUpdateForm = (e) => {
     e.preventDefault();
+    setSubmitting(true); 
+
     const formData = {
       name: e.target.name.value,
       framework: e.target.framework.value,
@@ -20,22 +62,25 @@ const UpdateModel = () => {
       image: e.target.image.value,
     };
 
-    fetch(`http://localhost:3000/models/${_id}`, {
+    fetch(`http://localhost:3000/models/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${user.accessToken}`,
       },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        toast("Successfully Updated This Model");
-        navigate(`/model-details/${_id}`);
+        console.log(data)
+        toast.success("Successfully Updated This Model!");
+        navigate(`/model-details/${id}`);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        console.error(err);
+        toast.error("Update failed.");
+      })
+      .finally(() => setSubmitting(false)); 
   };
 
   return (
@@ -43,6 +88,7 @@ const UpdateModel = () => {
       <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12 md:mt-14 mb-12 leading-relaxed">
         Update Model
       </h1>
+
       <div className="min-h-screen flex items-center justify-center">
         <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl mb-12">
           <div className="card-body p-6 relative">
@@ -60,8 +106,7 @@ const UpdateModel = () => {
                 />
               </div>
 
-              {/* ---FrameWork--- */}
-
+              {/* Framework */}
               <div>
                 <label className="label font-medium">Framework</label>
                 <input
@@ -74,22 +119,20 @@ const UpdateModel = () => {
                 />
               </div>
 
-              {/* ---UseCae--- */}
-
+              {/* Use Case */}
               <div>
-                <label className="label font-medium">useCase</label>
+                <label className="label font-medium">Use Case</label>
                 <input
                   type="text"
                   name="useCase"
                   defaultValue={useCase}
                   required
                   className="input w-full rounded-lg focus:border-0 focus:outline-gray-200"
-                  placeholder="Enter useCase"
+                  placeholder="Enter use case"
                 />
               </div>
 
-              {/* ---Dataset--- */}
-
+              {/* Dataset */}
               <div>
                 <label className="label font-medium">Dataset</label>
                 <input
@@ -102,7 +145,7 @@ const UpdateModel = () => {
                 />
               </div>
 
-              {/* ---Description Textarea--- */}
+              {/* Description */}
               <div>
                 <label className="label font-medium">Description</label>
                 <textarea
@@ -115,7 +158,7 @@ const UpdateModel = () => {
                 ></textarea>
               </div>
 
-              {/* image URL */}
+              {/* Image URL */}
               <div>
                 <label className="label font-medium">Image</label>
                 <input
@@ -129,9 +172,19 @@ const UpdateModel = () => {
               </div>
 
               {/* Submit Button */}
-              <button type="submit" className="btn w-full mt-6">
-                Update Model
+              <button
+                type="submit"
+                className="btn w-full mt-6 disabled:opacity-70"
+                disabled={submitting}
+              >
+                {submitting ? "Updating..." : "Update Model"}
               </button>
+
+              {submitting && (
+                <div className="mt-4">
+                  <LoadingLine />
+                </div>
+              )}
             </form>
           </div>
         </div>
