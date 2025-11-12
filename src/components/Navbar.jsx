@@ -30,8 +30,8 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const handleTheme = (checked) => {
-    setTheme(checked ? "dark" : "light");
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   // ________________
@@ -103,18 +103,23 @@ const Navbar = () => {
 
       {/* ---Ending Part--- */}
       <div className="navbar-end gap-3">
-        {/* ---theme toggle--- */}
-        <div>
-          {" "}
-          <input
-            type="checkbox"
-            onClick={(e) => {
-              handleTheme(e.target.checked);
-            }}
-            defaultChecked={localStorage.getItem("theme") === "dark"}
-            className="toggle toggle-xs"
-          />
-        </div>
+        {/* ---theme toggle - FINAL IMPLEMENTATION WITH GRADIENT AND HOVER--- */}
+        <button
+          onClick={toggleTheme}
+          className={`
+            w-10 h-10 rounded-full flex items-center justify-center 
+            cursor-pointer transition-transform duration-300 
+            bg-gradient-to-r from-[#1CB5E0] to-[#000851] 
+            hover:scale-105 
+            shadow-lg
+          `}
+          aria-label="Toggle theme"
+        >
+          <span className="text-xl transition-transform duration-300 text-white">
+            {theme === "light" ? "☀️" : "🌙"}
+          </span>
+        </button>
+        {/* ---End of theme toggle--- */}
 
         {/* ----Profile--- */}
         <div>

@@ -8,7 +8,7 @@ const GetStartedSection = () => {
 
   // }
   return (
-    <section className="pb-8 mt-0 mb:mb-8 px-8  bg-white  text-center">
+    <section className="pb-8 mt-0 mb:mb-8 px-8  text-center">
       <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold mb-4 text-gray-700 text-center leading-relaxed">Get Started</h1>
       <p className="text-lg mb-6 text-gray-500 leading-relaxed">
         Ready to manage AI models? Register or log in now to start organizing,

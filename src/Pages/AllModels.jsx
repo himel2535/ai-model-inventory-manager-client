@@ -94,6 +94,8 @@ const AllModels = () => {
           <option value="">All Frameworks</option>
           <option value="TensorFlow">TensorFlow</option>
           <option value="PyTorch">PyTorch</option>
+          <option value="JAX">JAX</option>
+          <option value="Computer Vision">Computer Vision</option>
           <option value="Keras">Keras</option>
           <option value="Scikit-learn">Scikit-learn</option>
         </select>
