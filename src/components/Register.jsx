@@ -11,49 +11,57 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  // ----Handle Email Signin----
   const handleEmailSignIn = (e) => {
     e.preventDefault();
     setSubmitting(true);
+
     const displayName = e.target.displayName.value;
     const photoURL = e.target.photoURL.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-
     const hasUpperCase = /[A-Z]/.test(password);
     const hasLowerCase = /[a-z]/.test(password);
     const isValidLength = password.length >= 6;
 
+ 
     if (!hasUpperCase) {
       toast.error("Password must contain at least one uppercase letter.");
+      setSubmitting(false); 
       return;
     }
 
     if (!hasLowerCase) {
       toast.error("Password must contain at least one lowercase letter.");
+      setSubmitting(false); 
       return;
     }
 
     if (!isValidLength) {
       toast.error("Password must be at least 6 characters long.");
+      setSubmitting(false); 
       return;
     }
 
     createUser(email, password)
       .then((result) => {
-        console.log(result);
+        console.log(result)
         updateUserProfile({ displayName, photoURL });
         navigate("/");
         e.target.reset();
       })
       .catch((error) => {
-        console.log(error.massage);
-        toast("Email already in use", error.massage);
+        console.log(error.message);
+        toast.error("Email already in use or invalid credentials.");
       })
       .finally(() => {
-        setSubmitting(false);
+        setSubmitting(false); 
       });
   };
+
+
+  // ----handle google sign in----
 
   const handleGoogleSignIn = () => {
     setSubmitting(true);

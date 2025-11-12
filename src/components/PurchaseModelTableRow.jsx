@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router";
 
 const PurchaseModelTableRow = ({ model }) => {
-  console.log(model);
-
   return (
     <tr className="border-b hover:bg-gray-50 transition duration-300">
       <td className="py-3 px-4">

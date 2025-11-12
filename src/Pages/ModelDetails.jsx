@@ -17,7 +17,7 @@ const ModelDetails = () => {
   useEffect(() => {
     const fetchModel = async () => {
       try {
-        setLoading(true); 
+        setLoading(true);
         const res = await fetch(`http://localhost:3000/models/${id}`, {
           headers: {
             authorization: `Bearer ${user.accessToken}`,
@@ -28,7 +28,7 @@ const ModelDetails = () => {
       } catch (err) {
         console.error("Fetch error:", err);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -56,6 +56,7 @@ const ModelDetails = () => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${user.accessToken}`,
           },
         })
           .then((res) => res.json())
@@ -105,7 +106,6 @@ const ModelDetails = () => {
       })
       .catch((err) => console.log(err));
   };
-
 
   if (loading) return <LoadingSpinner fullScreen={true} />;
 
