@@ -39,7 +39,7 @@ const PurchaseModelCard = ({ model }) => {
  
   <div className="mt-auto">
     <Link
-     to={`/model-details/${_id}`}
+     to={`/model-details/${model.modelId}`}
       className="btn w-full btn-sm text-white bg-gradient-to-r from-[#1CB5E0] to-[#000851] border-none hover:scale-105 transition-transform"
     >
       View Details

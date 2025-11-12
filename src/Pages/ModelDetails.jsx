@@ -18,11 +18,14 @@ const ModelDetails = () => {
     const fetchModel = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:3000/models/${id}`, {
-          headers: {
-            authorization: `Bearer ${user.accessToken}`,
-          },
-        });
+        const res = await fetch(
+          `https://ai-model-inventory-manager-server.vercel.app/models/${id}`,
+          {
+            headers: {
+              authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        );
         const data = await res.json();
         setModel(data);
       } catch (err) {
@@ -52,13 +55,16 @@ const ModelDetails = () => {
       buttonsStyling: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/models/${model._id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${user.accessToken}`,
-          },
-        })
+        fetch(
+          `https://ai-model-inventory-manager-server.vercel.app/models/${model._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then(() => {
             toast("Successfully deleted this model");
@@ -94,11 +100,14 @@ const ModelDetails = () => {
       modelId: model._id,
     };
 
-    fetch(`http://localhost:3000/purchased-model/${model._id}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(finalModel),
-    })
+    fetch(
+      `https://ai-model-inventory-manager-server.vercel.app/purchased-model/${model._id}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(finalModel),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         toast("Successfully Purchased this model");

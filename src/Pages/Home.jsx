@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/latest-models")
+    fetch("https://ai-model-inventory-manager-server.vercel.app/latest-models")
       .then((res) => res.json())
       .then((data) => {
         setLatestModels(data);

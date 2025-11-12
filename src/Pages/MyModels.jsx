@@ -5,20 +5,20 @@ import MyModelTableRow from "../components/MyModelTableRow";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const MyModels = () => {
-  const { user, } = use(AuthContext);
-  const [loading,setLoading]=useState(true)
+  const { user } = use(AuthContext);
+  const [loading, setLoading] = useState(true);
   const [models, setModels] = useState([]);
 
   useEffect(() => {
     const fetchMyModels = async () => {
-      setLoading(true)
+      setLoading(true);
       if (!user?.email) return;
 
-      setLoading(true); 
+      setLoading(true);
       try {
-        const token = await user.getIdToken(); 
+        const token = await user.getIdToken();
         const res = await fetch(
-          `http://localhost:3000/my-models?email=${user.email}`,
+          `https://ai-model-inventory-manager-server.vercel.app/my-models?email=${user.email}`,
           {
             headers: {
               authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ const MyModels = () => {
   }, [user, setLoading]);
 
   if (loading) {
-    return <LoadingSpinner fullScreen={true} />; 
+    return <LoadingSpinner fullScreen={true} />;
   }
 
   return (

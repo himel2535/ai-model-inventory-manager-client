@@ -22,11 +22,14 @@ const UpdateModel = () => {
   useEffect(() => {
     if (user?.accessToken && id) {
       setLoading(true);
-      fetch(`http://localhost:3000/models/${id}`, {
-        headers: {
-          authorization: `Bearer ${user.accessToken}`,
-        },
-      })
+      fetch(
+        `https://ai-model-inventory-manager-server.vercel.app/models/${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
         .then((res) => {
           if (!res.ok) throw new Error("Failed to fetch model details");
           return res.json();
@@ -60,7 +63,7 @@ const UpdateModel = () => {
       image: e.target.image.value,
     };
 
-    fetch(`http://localhost:3000/models/${id}`, {
+    fetch(`https://ai-model-inventory-manager-server.vercel.app/models/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
