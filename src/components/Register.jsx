@@ -25,28 +25,27 @@ const Register = () => {
     const hasLowerCase = /[a-z]/.test(password);
     const isValidLength = password.length >= 6;
 
- 
     if (!hasUpperCase) {
       toast.error("Password must contain at least one uppercase letter.");
-      setSubmitting(false); 
+      setSubmitting(false);
       return;
     }
 
     if (!hasLowerCase) {
       toast.error("Password must contain at least one lowercase letter.");
-      setSubmitting(false); 
+      setSubmitting(false);
       return;
     }
 
     if (!isValidLength) {
       toast.error("Password must be at least 6 characters long.");
-      setSubmitting(false); 
+      setSubmitting(false);
       return;
     }
 
     createUser(email, password)
       .then((result) => {
-        console.log(result)
+        console.log(result);
         updateUserProfile({ displayName, photoURL });
         navigate("/");
         e.target.reset();
@@ -56,10 +55,9 @@ const Register = () => {
         toast.error("Email already in use or invalid credentials.");
       })
       .finally(() => {
-        setSubmitting(false); 
+        setSubmitting(false);
       });
   };
-
 
   // ----handle google sign in----
 
@@ -82,7 +80,7 @@ const Register = () => {
   return (
     <div className=" flex flex-col gap-12 items-center justify-center mx-4">
       <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center mt-14 ">
-        <span className="text-gray-700">Register for</span> <br />{" "}
+        <span className="heading-text-dark-aware">Register for</span> <br />{" "}
         <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
           AI Model Inventory Manager
         </span>

@@ -39,12 +39,12 @@ const ModelPurchase = () => {
 
   return (
     <div className="max-w-6xl mx-auto  ">
-      <h1 className="mt-12 lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 leading-relaxed text-gray-700">
+      <h1 className="mt-12 lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 leading-relaxed heading-text-dark-aware">
         Purchased Models
       </h1>
 
       {/* ---Desktop / Tablet View — Table--- */}
-      <div className="hidden lg:block bg-white shadow-xl rounded-2xl border border-gray-200 overflow-hidden mb-10">
+      <div className="hidden lg:block  shadow-xl rounded-2xl overflow-hidden mb-10">
         <table className="table w-full border-collapse">
           <thead className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white text-left">
             <tr>

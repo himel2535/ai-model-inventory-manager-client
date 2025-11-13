@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <div className="flex flex-col gap-12 items-center justify-center mx-4">
       <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center mt-14 ">
-        <span className="text-gray-700">Login for</span> <br />
+        <span className="heading-text-dark-aware">Login for</span> <br />
         <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
           AI Model Inventory Manager
         </span>

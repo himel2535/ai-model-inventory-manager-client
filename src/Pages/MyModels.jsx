@@ -43,13 +43,13 @@ const MyModels = () => {
 
   return (
     <div className="max-w-6xl mx-auto  px-4 mb-10">
-      <h1 className=" mt-12 leading-relaxed lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 text-gray-700">
+      <h1 className=" mt-12 leading-relaxed lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 heading-text-dark-aware">
         My Uploaded Models
       </h1>
 
       {/* ---Desktop View — Table--- */}
 
-      <div className="hidden lg:block bg-white shadow-xl rounded-2xl border border-gray-200 overflow-hidden">
+      <div className="hidden lg:block shadow-xl rounded-2xl   overflow-hidden">
         <table className="table w-full border-collapse">
           <thead className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white text-left">
             <tr>

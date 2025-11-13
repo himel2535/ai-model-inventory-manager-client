@@ -132,7 +132,7 @@ const ModelDetails = () => {
 
           <div className="flex flex-col justify-center space-y-4 w-full md:w-1/2">
             <div className="flex items-center justify-between">
-              <h1 className="md:text-3xl text-2xl lg:text-4xl text-gray-700 font-bold">
+              <h1 className="md:text-3xl text-2xl lg:text-4xl heading-text-dark-aware font-bold">
                 {model.name}
               </h1>
 
@@ -142,20 +142,28 @@ const ModelDetails = () => {
             </div>
 
             <p className="text-gray-500 leading-relaxed">
-              <span className="font-semibold text-gray-700">UseCase:</span>{" "}
+              <span className="font-semibold heading-text-dark-aware">
+                UseCase:
+              </span>{" "}
               {model.useCase}
             </p>
             <p className="text-gray-500 leading-relaxed">
-              <span className="font-semibold text-gray-700">Dataset:</span>{" "}
+              <span className="font-semibold heading-text-dark-aware">
+                Dataset:
+              </span>{" "}
               {model.dataset}
             </p>
             <p className="text-gray-500 leading-relaxed">
-              <span className="font-semibold text-gray-700">Description:</span>{" "}
+              <span className="font-semibold heading-text-dark-aware">
+                Description:
+              </span>{" "}
               {model.description}
             </p>
 
             <p className="text-gray-500 leading-relaxed">
-              <span className="font-semibold text-gray-700">Purchased:</span>{" "}
+              <span className="font-semibold heading-text-dark-aware">
+                Purchased:
+              </span>{" "}
               <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-transparent bg-clip-text font-bold">
                 {model.purchased}
               </span>

@@ -50,7 +50,7 @@ const AllModels = () => {
 
   return (
     <div className="mx-4 md:mx-6 lg:mx-10">
-      <h1 className="text-center text-gray-700 lg:text-4xl md:text-3xl text-2xl font-bold mt-12  mb-4 leading-relaxed">
+      <h1 className="text-center heading-text-dark-aware lg:text-4xl md:text-3xl text-2xl font-bold mt-12  mb-4 leading-relaxed">
         All Models
       </h1>
 
@@ -100,7 +100,7 @@ const AllModels = () => {
           <option value="Scikit-learn">Scikit-learn</option>
         </select>
 
-        <button className="btn btn-secondary rounded-full">Search</button>
+        <button className="btn btn-info rounded-full">Search</button>
       </form>
 
       {/*  Model Cards */}

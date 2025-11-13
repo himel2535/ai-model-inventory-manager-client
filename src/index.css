@@ -11,6 +11,33 @@
   themes: light --default, dark --prefersdark;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ---text-color--- */
+
+@layer components {
+
+  .heading-text-dark-aware {
+
+    @apply text-gray-600; 
+
+
+    @apply dark:text-gray-400; 
+  }
+}
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 .btn {
@@ -108,7 +135,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(90deg,#1cb5e0 0%, #3645cd 100%);
+  background-image: linear-gradient(90deg, #1cb5e0 0%, #3645cd 100%);
   position: relative;
 }
 

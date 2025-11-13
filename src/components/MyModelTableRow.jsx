@@ -5,8 +5,8 @@ const MyModelTableRow = ({ model, index }) => {
   const { _id, name, framework, useCase, createdBy, image } = model;
 
   return (
-    <tr className="hover:bg-gray-50 transition-all duration-300 border-b">
-      <td className="py-3 px-4 text-gray-500">{index + 1}</td>
+    <tr className=" transition-all duration-300 border-b">
+      <td className="py-3 px-4 heading-text-dark-aware">{index + 1}</td>
       <td className="py-3 px-4">
         <img
           src={image}
@@ -14,17 +14,17 @@ const MyModelTableRow = ({ model, index }) => {
           className="w-14 h-14 object-cover rounded-md shadow-sm"
         />
       </td>
-      <td className="py-3 px-4 font-semibold text-gray-800">{name}</td>
-      <td className="py-3 px-4 text-gray-600">{framework}</td>
-      <td className="py-3 px-4 text-gray-600">{useCase}</td>
-      <td className="py-3 px-4 text-gray-600">{createdBy}</td>
+      <td className="py-3 px-4 font-semibold heading-text-dark-aware">{name}</td>
+      <td className="py-3 px-4 heading-text-dark-aware">{framework}</td>
+      <td className="py-3 px-4 heading-text-dark-aware">{useCase}</td>
+      <td className="py-3 px-4 heading-text-dark-aware">{createdBy}</td>
       <td className="py-3 px-4 text-center">
-          <Link
-            to={`/model-details/${_id}`}
-            className="btn text-white w-full btn-sm"
-          >
-            View Details
-          </Link>
+        <Link
+          to={`/model-details/${_id}`}
+          className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white px-4 py-2 rounded-lg hover:opacity-90 btn transition-all"
+        >
+          View 
+        </Link>
       </td>
     </tr>
   );
