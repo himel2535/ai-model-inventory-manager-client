@@ -37,13 +37,23 @@ const Navbar = () => {
   // ________________
 
   return (
-    <div className="navbar py-1 px-8 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
+    <div className="navbar py-1 lg:px-8 md:px-6 px-4 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
       <div className="navbar-start ">
-        <div className="dropdown mr-3">
-          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+        
+        {/* // Mobile Menu Button */}
+        <div className="dropdown"> 
+          <div
+            tabIndex={0}
+            role="button"
+            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center 
+                       cursor-pointer 
+                       bg-gradient-to-r from-[#1CB5E0] to-[#000851] 
+                       hover:scale-105 transition-transform duration-300 
+                       shadow-md"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 text-white" 
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -73,15 +83,14 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+        
+        {/* // Logo Link */}
         <Link
           to={"/"}
-          className="flex items-center gap-2  md:text-xl font-bold"
+          className="flex items-center gap-2 md:text-xl font-bold ml-3 md:ml-0" 
         >
-          <img
-            className="w-10 h-10 rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851]"
-            src={logo}
-            alt=""
-          />
+          {/* লোগোটি থেকে ব্যাকগ্রাউন্ড সরানো হয়েছে */}
+          <img className="w-10 h-10 rounded-full" src={logo} alt="" /> 
           <h2 className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
             MODELS INVENTORY
           </h2>
@@ -103,19 +112,18 @@ const Navbar = () => {
 
       {/* ---Ending Part--- */}
       <div className="navbar-end gap-3">
-        {/* ---theme toggle - FINAL IMPLEMENTATION WITH GRADIENT AND HOVER--- */}
+        {/* // 🎨 FİXED: Removed hover:scale-105 from the button container. */}
         <button
           onClick={toggleTheme}
           className={`
             w-10 h-10 rounded-full flex items-center justify-center 
             cursor-pointer transition-transform duration-300 
-            bg-gradient-to-r from-[#1CB5E0] to-[#000851] 
-            hover:scale-105 
-            shadow-lg
+            // hover:scale-105 <-- REMOVED from button
           `}
           aria-label="Toggle theme"
         >
-          <span className="text-xl transition-transform duration-300 text-white">
+          {/* আইকনের জন্য হোভার ইফেক্ট রাখা হয়েছে */}
+          <span className="text-xl transition-transform duration-300 hover:scale-110"> 
             {theme === "light" ? "☀️" : "🌙"}
           </span>
         </button>

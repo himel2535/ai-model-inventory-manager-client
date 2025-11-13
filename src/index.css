@@ -90,8 +90,7 @@
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 8px;
-  /* transition: all 0.3s ease; */
-  color: #333;
+  display: block; /* 👈 Changed to block to take full width of LI */
 }
 
 /* ---- Hover Effect ---- */
@@ -117,10 +116,11 @@
 .menu li a.active::after {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 0; /* 👈 FİXED: Start from the left edge (0) */
+  right: 0; /* 👈 FİXED: Extend to the right edge (0) */
   bottom: -3px;
-  transform: translateX(-50%);
-  width: 50%;
+  transform: none; /* 👈 FİXED: Transform not needed when using left: 0 and right: 0 */
+  width: auto; /* 👈 FİXED: Use auto width */
   height: 3px;
   background: linear-gradient(90deg, #1cb5e0 0%, #3645cd 100%);
   border-radius: 2px;
@@ -129,6 +129,5 @@
 
 /* Optional: make underline animate on hover */
 .menu li a.active:hover::after {
-  width: 100%;
+  width: auto; /* Keep full width, no animation needed now */
 }
-
