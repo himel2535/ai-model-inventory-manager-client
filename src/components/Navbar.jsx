@@ -1,12 +1,15 @@
-import React, { use, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router";
+import React, { useEffect, useState, useContext } from "react";
 import logo from "../assets/idea.png";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import fakeDP from "../assets/face.jpg";
+import { GiArtificialIntelligence } from "react-icons/gi";
+import { ImBoxAdd } from "react-icons/im";
+import { FcHome, FcMultipleInputs, FcViewDetails } from "react-icons/fc";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
     signOutUser()
@@ -21,7 +24,6 @@ const Navbar = () => {
   };
 
   // ----Theme Toggle---
-
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
@@ -39,9 +41,8 @@ const Navbar = () => {
   return (
     <div className="navbar py-1 lg:px-8 md:px-6 px-4 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
       <div className="navbar-start ">
-        
         {/* // Mobile Menu Button */}
-        <div className="dropdown"> 
+        <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
@@ -53,7 +54,7 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-white" 
+              className="h-5 w-5 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -67,66 +68,90 @@ const Navbar = () => {
               />{" "}
             </svg>
           </div>
-          {/* ----Route---- */}
+          {/* ----Route (Mobile)---- */}
           <ul
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/"}>
+                <div className="flex items-center gap-2">
+                  <FcHome /> Home
+                </div>
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/models"}>View Models</NavLink>
+              <NavLink to={"/models"}>
+                <div className="flex items-center gap-2">
+                  <FcViewDetails /> View Models
+                </div>
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/add-model"}>Add Model</NavLink>
+              <NavLink to={"/add-model"}>
+                <div className="flex items-center gap-2">
+                  <FcMultipleInputs /> Add Model
+                </div>
+              </NavLink>
             </li>
           </ul>
         </div>
-        
+
         {/* // Logo Link */}
         <Link
           to={"/"}
-          className="flex items-center gap-2 md:text-xl font-bold ml-3 md:ml-0" 
+          className="flex items-center gap-2 md:text-xl font-bold ml-3 md:ml-0"
         >
-          {/* লোগোটি থেকে ব্যাকগ্রাউন্ড সরানো হয়েছে */}
-          <img className="w-10 h-10 rounded-full" src={logo} alt="" /> 
+          <img className="w-10 h-10 rounded-full" src={logo} alt="" />
           <h2 className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
             MODELS INVENTORY
           </h2>
         </Link>
       </div>
+
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1 gap-6">
+          {/* ----Route (Desktop)---- */}
+
           <li>
-            <NavLink to={"/"}>Home</NavLink>
+            <NavLink to={"/"}>
+              <div className="flex items-center gap-1">
+                <FcHome /> Home
+              </div>
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/models"}>View Models</NavLink>
+            <NavLink to={"/models"}>
+              <div className="flex items-center gap-1">
+                <FcViewDetails /> View Models
+              </div>
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/add-model"}>Add Model</NavLink>
+            <NavLink to={"/add-model"}>
+              <div className="flex items-center gap-1">
+                <FcMultipleInputs /> Add Model
+              </div>
+            </NavLink>
           </li>
         </ul>
       </div>
 
       {/* ---Ending Part--- */}
       <div className="navbar-end gap-3">
-        {/* // 🎨 FİXED: Removed hover:scale-105 from the button container. */}
         <button
           onClick={toggleTheme}
           className={`
             w-10 h-10 rounded-full flex items-center justify-center 
             cursor-pointer transition-transform duration-300 
-            // hover:scale-105 <-- REMOVED from button
           `}
           aria-label="Toggle theme"
         >
-          {/* আইকনের জন্য হোভার ইফেক্ট রাখা হয়েছে */}
-          <span className="text-xl transition-transform duration-300 hover:scale-110"> 
+          <span className="text-xl transition-transform duration-300 hover:scale-110">
             {theme === "light" ? "☀️" : "🌙"}
           </span>
         </button>
+
         {/* ---End of theme toggle--- */}
 
         {/* ----Profile--- */}
@@ -134,6 +159,7 @@ const Navbar = () => {
           {" "}
           {user ? (
             <div className="dropdown dropdown-end z-50">
+              {/* ... (Dropdown trigger code) ... */}
               <div
                 tabIndex={0}
                 role="button"
@@ -151,6 +177,7 @@ const Navbar = () => {
                 tabIndex="-1"
                 className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
               >
+                {/* ... (Dropdown menu items) ... */}
                 <div className=" pb-3 border-b border-b-gray-200">
                   <li className="text-sm font-bold">{user.displayName}</li>
                   <li className="text-xs">{user.email}</li>

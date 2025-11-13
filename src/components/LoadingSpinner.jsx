@@ -13,16 +13,19 @@ const LoadingSpinner = ({ fullScreen = false }) => {
         width: '100%',
     };
 
+    const primaryColor = '#1CB5E0'; 
+    const secondaryColor = '#000851'; 
+
     return (
         <div style={spinnerContainerStyle}>
             <Hourglass
                 visible={true}
-                height="80"
-                width="80"
+                height="50"
+                width="50"
                 ariaLabel="hourglass-loading"
                 wrapperStyle={{}}
                 wrapperClass=""
-                colors={['#306cce', '#72a1ed']} 
+                colors={[primaryColor,secondaryColor]} 
             />
         </div>
     );

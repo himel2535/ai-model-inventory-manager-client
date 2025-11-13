@@ -1,18 +1,18 @@
-@import "tailwindcss";
-@plugin "daisyui";
-/* @plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-  --color-primary: blue;
-  --color-secondary: teal;
-} */
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+
+@import "tailwindcss";
+
+@plugin "daisyui";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+
+
+/* --font set up-- */
 .poppins-regular {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -25,16 +25,15 @@ body {
   font-style: normal;
 }
 
+
+
 /* ---text-color--- */
 
 @layer components {
-
   .heading-text-dark-aware {
+    @apply text-gray-600;
 
-    @apply text-gray-600; 
-
-
-    @apply dark:text-gray-400; 
+    @apply dark:text-gray-400;
   }
 }
 
@@ -117,7 +116,7 @@ body {
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 8px;
-  display: block; /* 👈 Changed to block to take full width of LI */
+  display: block; 
 }
 
 /* ---- Hover Effect ---- */
@@ -129,25 +128,35 @@ body {
 }
 
 /* ---- Active (Clicked) State ---- */
+
 .menu li a.active {
   font-weight: 700;
   background: none;
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
   background-image: linear-gradient(90deg, #1cb5e0 0%, #3645cd 100%);
   position: relative;
+
+
+  -webkit-text-fill-color: unset; 
+  color: #1cb5e0;
+}
+
+
+.menu li a.active svg {
+    color: #1cb5e0; 
 }
 
 /* ---- Active underline ---- */
 .menu li a.active::after {
   content: "";
   position: absolute;
-  left: 0; /* 👈 FİXED: Start from the left edge (0) */
-  right: 0; /* 👈 FİXED: Extend to the right edge (0) */
+  left: 0; 
+  right: 0; 
   bottom: -3px;
-  transform: none; /* 👈 FİXED: Transform not needed when using left: 0 and right: 0 */
-  width: auto; /* 👈 FİXED: Use auto width */
+  transform: none; 
+  width: auto; 
   height: 3px;
   background: linear-gradient(90deg, #1cb5e0 0%, #3645cd 100%);
   border-radius: 2px;
@@ -156,5 +165,5 @@ body {
 
 /* Optional: make underline animate on hover */
 .menu li a.active:hover::after {
-  width: auto; /* Keep full width, no animation needed now */
+  width: auto; 
 }
