@@ -47,12 +47,12 @@ const AddModel = () => {
   };
 
   return (
-    <div>
+    <div className="mx-4">
       <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold mt-12 mb-9 leading-relaxed text-gray-700">
         Add New Model
       </h1>
       <div className="min-h-screen flex items-center justify-center">
-        <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl mb-12">
+        <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl mb-12">
           <div className="card-body p-6 relative">
             <form onSubmit={handleAddForm} className="space-y-4">
               {/* Name Field */}

@@ -13,7 +13,7 @@ export const ModelCard = ({ model }) => {
       </figure>
       <div className="card-body">
         <div className="flex items-center justify-between">
-          <div className="badge p-2 badge-xs badge-secondary bg-gradient-to-r from-[#1CB5E0] to-[#000851] rounded-full">
+          <div className="badge  p-2 badge-xs badge-primary bg-gradient-to-r from-[#1CB5E0] to-[#000851] rounded-full">
             {framework}
           </div>
           <h4 className="line-clamp-1 bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
