@@ -3,12 +3,18 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import LoadingLine from "../components/LoadingLine";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { signInWithGoogle, signInUser } = use(AuthContext);
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   // ----Email Sign In----
   const handleSignIn = (e) => {
@@ -63,19 +69,29 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                className="input rounded-lg focus:border-0 focus:outline-gray-200"
+                className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full"
                 placeholder="Email"
                 required
               />
 
               <label className="label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="input rounded-lg focus:border-0 focus:outline-gray-200"
-                placeholder="Password"
-                required
-              />
+
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full pr-10"
+                  placeholder="Password"
+                  required
+                />
+
+                <span
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
 
               <div>
                 <a className="link link-hover">Forgot password?</a>
@@ -107,6 +123,7 @@ const Login = () => {
               "Signing in with Google..."
             ) : (
               <>
+                {/* Google SVG */}
                 <svg
                   aria-label="Google logo"
                   width="16"

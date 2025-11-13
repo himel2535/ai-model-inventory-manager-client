@@ -3,13 +3,19 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import LoadingLine from "./LoadingLine";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = use(AuthContext);
 
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   // ----Handle Email Signin----
   const handleEmailSignIn = (e) => {
@@ -89,44 +95,63 @@ const Register = () => {
         <div className="card-body">
           <form onSubmit={handleEmailSignIn}>
             <fieldset className="fieldset">
-              {/* email field */}
+              {/* Name field */}
               <label className="label">Name</label>
               <input
                 type="text"
                 name="displayName"
-                className="input rounded-lg  focus:border-0 focus:outline-gray-200"
+                className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full"
                 placeholder="Name"
               />
 
+              {/* PhotoURL field */}
               <label className="label">PhotoURL</label>
               <input
                 type="text"
                 name="photoURL"
-                className="input rounded-lg  focus:border-0 focus:outline-gray-200"
+                className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full"
                 placeholder="Photo URL"
               />
-              {/* email field */}
+
+              {/* Email field */}
               <label className="label">Email</label>
               <input
                 type="email"
                 name="email"
-                className="input rounded-lg  focus:border-0 focus:outline-gray-200"
+                // CHANGES: block w-full যোগ করা হয়েছে
+                className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full"
                 placeholder="Email"
               />
-              {/* password field */}
+
               <label className="label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="input rounded-lg  focus:border-0 focus:outline-gray-200"
-                placeholder="Password"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full pr-12"
+                  placeholder="Password"
+                  required
+                />
+
+                <span
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-lg cursor-pointer text-gray-500 hover:text-gray-700"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
+
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
-              <button className="btn text-white mt-4 " disabled={submitting}>
+
+              <button
+                className="btn w-full text-white mt-4 "
+                disabled={submitting}
+              >
                 {submitting ? "Registering..." : "Register"}
               </button>
+
               {submitting && (
                 <div>
                   <LoadingLine></LoadingLine>
