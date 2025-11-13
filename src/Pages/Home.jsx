@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div className="">
       <Banner></Banner>
-      <div className="px-8">
+      <div className="lg:mx-8 md:mx-6 mx-4">
         <h1 className="text-center text-gray-700 lg:text-4xl md:text-3xl text-2xl font-bold mt-12 md:mt-14 mb-10 leading-relaxed">
           Latest Models
         </h1>

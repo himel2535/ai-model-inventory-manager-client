@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
+    <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10 bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white ">
       {/* Main links */}
       <nav className="grid grid-flow-col gap-4">
         <a className="link link-hover" href="#">
@@ -100,11 +100,8 @@ const Footer = () => {
       {/* Copyright */}
       <aside>
         <p>
-          Copyright © {new Date().getFullYear()} - All rights reserved by{" "}
-          <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
-            **AI Models Inventory Manager**
-          </span>
-          .
+          Copyright © {new Date().getFullYear()} - All rights reserved by **AI
+          Models Inventory Manager** .
         </p>
       </aside>
     </footer>

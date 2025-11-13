@@ -6,7 +6,7 @@ const PurchaseModelCard = ({ model }) => {
     model;
 
   return (
-<div className="mx-4  rounded-2xl shadow-md p-4 flex flex-col justify-between h-full">
+<div className="mx-4 rounded-2xl shadow-md p-4 flex flex-col justify-between  h-full">
 
   <div className="flex flex-col gap-4 mb-3">
     <div className="flex items-center justify-center ">

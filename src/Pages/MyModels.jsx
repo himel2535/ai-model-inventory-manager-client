@@ -42,7 +42,7 @@ const MyModels = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto  px-4">
+    <div className="max-w-6xl mx-auto  px-4 mb-10">
       <h1 className=" mt-12 leading-relaxed lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 text-gray-700">
         My Uploaded Models
       </h1>
