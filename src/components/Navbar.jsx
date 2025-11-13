@@ -3,8 +3,6 @@ import logo from "../assets/idea.png";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import fakeDP from "../assets/face.jpg";
-import { GiArtificialIntelligence } from "react-icons/gi";
-import { ImBoxAdd } from "react-icons/im";
 import { FcHome, FcMultipleInputs, FcViewDetails } from "react-icons/fc";
 import { Link, NavLink } from "react-router";
 
@@ -75,22 +73,22 @@ const Navbar = () => {
           >
             <li>
               <NavLink to={"/"}>
-                <div className="flex items-center gap-2">
-                  <FcHome /> Home
+                <div className="flex items-center  gap-2">
+                  <FcHome /> <span>Home</span>
                 </div>
               </NavLink>
             </li>
             <li>
               <NavLink to={"/models"}>
-                <div className="flex items-center gap-2">
-                  <FcViewDetails /> View Models
+                <div className="flex items-center  gap-2">
+                  <FcViewDetails /> <span>View Models</span>
                 </div>
               </NavLink>
             </li>
             <li>
               <NavLink to={"/add-model"}>
-                <div className="flex items-center gap-2">
-                  <FcMultipleInputs /> Add Model
+                <div className="flex items-center  gap-2">
+                  <FcMultipleInputs /> <span>Add Model</span>
                 </div>
               </NavLink>
             </li>
@@ -111,27 +109,39 @@ const Navbar = () => {
 
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1 gap-6">
-          {/* ----Route (Desktop)---- */}
+          {/* Home */}
+          <li>
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                `flex items-center gap-1 ${isActive ? "active" : ""}`
+              }
+            >
+              <FcHome /> <span>Home</span>
+            </NavLink>
+          </li>
 
+          {/* View Models */}
           <li>
-            <NavLink to={"/"}>
-              <div className="flex items-center gap-1">
-                <FcHome /> Home
-              </div>
+            <NavLink
+              to={"/models"}
+              className={({ isActive }) =>
+                `flex items-center gap-1 ${isActive ? "active" : ""}`
+              }
+            >
+              <FcViewDetails /> <span>View Models</span>
             </NavLink>
           </li>
+
+          {/* Add Model */}
           <li>
-            <NavLink to={"/models"}>
-              <div className="flex items-center gap-1">
-                <FcViewDetails /> View Models
-              </div>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/add-model"}>
-              <div className="flex items-center gap-1">
-                <FcMultipleInputs /> Add Model
-              </div>
+            <NavLink
+              to={"/add-model"}
+              className={({ isActive }) =>
+                `flex items-center gap-1 ${isActive ? "active" : ""}`
+              }
+            >
+              <FcMultipleInputs /> <span>Add Model</span>
             </NavLink>
           </li>
         </ul>
