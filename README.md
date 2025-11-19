@@ -24,8 +24,11 @@ https://github.com/himel2535/ai-model-inventory-manager-server
 
 <h4>📌 Project Overview :</h4>
 
-AI Model Inventory Manager is a React + Express + MongoDB + Firebase powered full-stack application where users can add, update, delete, purchase, and explore AI models.
-It helps beginners understand how AI models are stored, categorized & managed in real-world model hubs.
+AI Model Inventory Manager is a modern full-stack web application built with React.js, Express.js, MongoDB, and Firebase Authentication. It allows users to add, edit, delete, purchase, and explore AI models in a secure and responsive environment.
+
+The platform simulates real-world AI model repositories like Hugging Face, Kaggle, and Model Zoo, providing a hands-on understanding of how AI models are stored, categorized, and managed. All sensitive actions are secured both on the frontend and backend using Firebase Authentication and token verification. The backend validates Firebase tokens for restricted operations, ensuring that only authorized users can perform CRUD actions or purchases.
+
+This project demonstrates the integration of frontend and backend technologies, real-time UI updates, and robust security, making it an excellent project for developers looking to learn full-stack development with practical AI model management and secured backend concepts.
 
 ---
 
