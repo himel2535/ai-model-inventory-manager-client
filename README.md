@@ -1,24 +1,36 @@
-🧠 AI Model Inventory Manager
+<h2 align="center">🧠 AI Model Inventory Manager</h2>
 
-A full-stack web application for managing AI model repositories — inspired by platforms like Hugging Face, Kaggle & Model Zoo.
+<div align="center"> <img src="https://i.ibb.co.com/Y78LpG8r/Screen-Shot-2025-11-19-at-2-05-53-PM.png" alt="project screenshot" width="60%" height="50%"/> </div>
 
-<div align="center"> <img src="https://i.ibb.co.com/Y78LpG8r/Screen-Shot-2025-11-19-at-2-05-53-PM.png" alt="project screenshot" width="80%" height="70%"/> </div>
 
-🔗 Live Links
-🚀 Live Website
+<p align="center">A full-stack web application for managing AI model repositories — inspired by platforms like Hugging Face, Kaggle & Model Zoo.</p>
+
+---
+
+<h4>🔗 Live Links
+🚀 Live Website</h4>
 
 https://ai-model-inventory-manag-45b01.web.app/
 
-🖥️ Server Repository
+---
+
+<h4>
+  🖥️ Server Repository :
+</h4>
 
 https://github.com/himel2535/ai-model-inventory-manager-server
 
-📌 Project Overview
+---
+
+<h4>📌 Project Overview :</h4>
 
 AI Model Inventory Manager is a React + Express + MongoDB + Firebase powered full-stack application where users can add, update, delete, purchase, and explore AI models.
 It helps beginners understand how AI models are stored, categorized & managed in real-world model hubs.
 
-🎯 Key Features
+---
+
+<h4>🎯 Key Features :</h4>
+
 🔐 Authentication (Firebase)
 
 Email/Password Login & Register
@@ -39,7 +51,7 @@ Only model creator can edit/delete their models
 
 Secure API & token-based actions
 
-🧾 Model Data Includes:
+<h4>🧾 Model Data Includes:</h4>
 
 Model Name
 
@@ -77,8 +89,10 @@ Toast notifications
 
 Responsive for all screen sizes
 
-🧩 Tech Stack
-Frontend
+---
+
+<h4>🧩 Tech Stack
+Frontend</h4>
 
 React.js
 
@@ -108,8 +122,12 @@ Firebase Hosting (Client)
 
 Vercel (Server)
 
-📦 Dependencies (Client)
-Main Dependencies
+---
+
+
+<h4>📦 Dependencies (Client) :</h4>
+
+Main Dependencies  
 {
   "@tailwindcss/vite": "^4.1.17",
   "firebase": "^12.5.0",
@@ -126,7 +144,7 @@ Main Dependencies
   "tsparticles": "^3.9.1"
 }
 
-Dev Dependencies
+Dev Dependencies 
 {
   "@eslint/js": "^9.36.0",
   "@types/react": "^19.1.16",
@@ -142,7 +160,10 @@ Dev Dependencies
   "vite": "^7.1.7"
 }
 
-🏗️ How to Run the Project (Locally)
+---
+
+<h4>🏗️ How to Run the Project (Locally) :</h4>
+
 🔧 1. Clone the Repository
 git clone https://github.com/himel2535/ai-model-inventory-manager-client
 cd ai-model-inventory-manager-client
@@ -162,7 +183,7 @@ VITE_MESSAGING_SENDER_ID=your_sender_id
 VITE_APP_ID=your_app_id
 VITE_SERVER_URL=https://your-vercel-server.vercel.app
 
-▶️ 4. Run Development Server
+▶️ 4. Run Development Server :
 npm run dev
 
 
@@ -184,9 +205,11 @@ FIREBASE_SERVICE_ACCOUNT=your_firebase_admin_credentials
 4. Run server:
 npm run start
 
-👨‍💻 Developer
+---
 
-Monwar Hossan Himel
+<h4>👨‍💻 Developer :</h4>
+
+<h5>Monwar Hossan Himel</h5>
 📧 Email: monwarhossanhimel@gmail.com
 
 🌐 Portfolio: https://drive.google.com/drive/u/0/home
