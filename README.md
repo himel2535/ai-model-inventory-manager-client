@@ -1,127 +1,193 @@
 🧠 AI Model Inventory Manager
+
+A full-stack web application for managing AI model repositories — inspired by platforms like Hugging Face, Kaggle & Model Zoo.
+
+
+🔗 Live Links
 🚀 Live Website
 
-🔗 Visit Live Site --  https://ai-model-inventory-manag-45b01.web.app/
+https://ai-model-inventory-manag-45b01.web.app/
 
-🔗 Server Repo (Vercel)  ---    https://github.com/himel2535/ai-model-inventory-manager-server
+🖥️ Server Repository
 
-📋 Project Overview
+https://github.com/himel2535/ai-model-inventory-manager-server
 
-AI Model Inventory Manager is a full-stack web application built using React.js, Express.js, MongoDB, and Firebase Authentication.
-The system allows users to add, view, update, delete, and purchase AI models while maintaining secure authentication and responsive design.
+📌 Project Overview
 
-It simulates real-world AI model repositories like Hugging Face, Kaggle, and Model Zoo — helping users understand how AI models are managed, categorized, and utilized.
+AI Model Inventory Manager is a React + Express + MongoDB + Firebase powered full-stack application where users can add, update, delete, purchase, and explore AI models.
+It helps beginners understand how AI models are stored, categorized & managed in real-world model hubs.
 
-🎯 Why This Project?
+🎯 Key Features
+🔐 Authentication (Firebase)
 
-The project bridges web development and AI concepts, enabling beginners to understand:
+Email/Password Login & Register
 
-How AI models are stored and cataloged.
+Google Sign-in
 
-How CRUD operations and authentication work in real-world apps.
+Password Validation
 
-Integration between frontend (React), backend (Express + MongoDB), and Firebase for security.
+Persistent Login on reload
 
-💡 Key Features
-🔐 Authentication
+Private routes
 
-User Registration & Login with Firebase.
+⚙️ CRUD Operations (MongoDB + Express)
 
-Google Sign-In supported.
+Add, Edit, Delete, View AI Models
 
-Password validation (uppercase, lowercase, minimum 6 chars).
+Only model creator can edit/delete their models
 
-Persisted login on page reload for private routes.
+Secure API & token-based actions
 
-⚙️ CRUD Operations
+🧾 Model Data Includes:
 
-Add, Edit, Delete, and View AI models.
+Model Name
 
-Each model includes name, framework, use case, dataset, description, and image.
+Framework (TensorFlow / PyTorch / JAX etc.)
 
-Models stored securely in MongoDB.
+Use Case
 
-Only the creator can edit or delete their models.
+Dataset
 
-💾 Data Management
+Description
 
-MongoDB Atlas used for storing model data.
+Image
 
-RESTful APIs with Express.js for all CRUD routes.
+🛒 Purchase System
 
-Secure Firebase token verification for restricted actions (optional admin SDK used).
+Buy any model
+
+Purchase count increases using $inc
+
+My Purchases Page
+
+🌓 UI Features
+
+Dark/Light theme toggle
+
+Latest Models Section (shows newest 6 models)
+
+Search & Filter (framework wise)
+
+My Models Page
+
+404 Page with animation
+
+Toast notifications
+
+Responsive for all screen sizes
+
+🧩 Tech Stack
+Frontend
+
+React.js
+
+React Router DOM
+
+Tailwind CSS
+
+DaisyUI
+
+Framer Motion
+
+Firebase
+
+Backend
+
+Node.js
+
+Express.js
+
+Database
+
+MongoDB Atlas
+
+Hosting
+
+Firebase Hosting (Client)
+
+Vercel (Server)
+
+📦 Dependencies (Client)
+Main Dependencies
+{
+  "@tailwindcss/vite": "^4.1.17",
+  "firebase": "^12.5.0",
+  "framer-motion": "^12.23.24",
+  "lottie-react": "^2.4.1",
+  "react": "^19.1.1",
+  "react-dom": "^19.1.1",
+  "react-icons": "^5.5.0",
+  "react-loader-spinner": "^8.0.0",
+  "react-router": "^7.9.5",
+  "react-toastify": "^11.0.5",
+  "react-tsparticles": "^2.12.2",
+  "sweetalert2": "^11.26.3",
+  "tsparticles": "^3.9.1"
+}
+
+Dev Dependencies
+{
+  "@eslint/js": "^9.36.0",
+  "@types/react": "^19.1.16",
+  "@types/react-dom": "^19.1.9",
+  "@vitejs/plugin-react": "^5.0.4",
+  "daisyui": "^5.4.7",
+  "eslint": "^9.36.0",
+  "eslint-plugin-react-hooks": "^5.2.0",
+  "eslint-plugin-react-refresh": "^0.4.22",
+  "globals": "^16.4.0",
+  "postcss": "^8.5.6",
+  "tailwindcss": "^4.1.17",
+  "vite": "^7.1.7"
+}
+
+🏗️ How to Run the Project (Locally)
+🔧 1. Clone the Repository
+git clone https://github.com/himel2535/ai-model-inventory-manager-client
+cd ai-model-inventory-manager-client
+
+📦 2. Install Dependencies
+npm install
+
+🔐 3. Setup Firebase Environment Variables
+
+Create a .env file in project root:
+
+VITE_API_KEY=your_api_key
+VITE_AUTH_DOMAIN=your_auth_domain
+VITE_PROJECT_ID=your_project_id
+VITE_STORAGE_BUCKET=your_storage_bucket
+VITE_MESSAGING_SENDER_ID=your_sender_id
+VITE_APP_ID=your_app_id
+VITE_SERVER_URL=https://your-vercel-server.vercel.app
+
+▶️ 4. Run Development Server
+npm run dev
 
 
-🧩 Dynamic UI
+Project will open at:
+👉 http://localhost:5173/
 
-Latest Models Section: Fetch and display the 6 newest models dynamically.
+🚀 How to Run Server (Backend)
+1. Clone the server repo:
+git clone https://github.com/himel2535/ai-model-inventory-manager-server
+cd ai-model-inventory-manager-server
 
-All Models Page: Grid and table view with search & filter (framework-based).
+2. Install dependencies:
+npm install
 
-My Models Page: Displays user-created models.
+3. Setup .env:
+MONGODB_URI=your_mongodb_connection
+FIREBASE_SERVICE_ACCOUNT=your_firebase_admin_credentials
 
-My Purchases Page: Displays models purchased by the logged-in user.
-
-💸 Purchase Functionality
-
-Purchase any model → instantly increments purchase count using $inc.
-
-Real-time UI update after successful purchase.
-
-
-🌓 Extra Features
-
-Dark/Light Theme Toggle (affects the entire site).
-
-Loading Spinner for data fetching and form submission.
-
-Custom 404 Error Page with animation & “Return Home” button.
-
-Fully responsive design (mobile, tablet, desktop).
-
-Toast notifications (no browser alerts used).
-
-
-⚙️ Tech Stack
-Layer	Technologies
-Frontend	React.js, React Router DOM, Tailwind CSS, DaisyUI, Toastify
-Backend	Express.js, Node.js
-Database	MongoDB Atlas
-Authentication	Firebase Authentication + Firebase Admin SDK
-Hosting	Firebase (client) & Vercel (server)
-
-🧭 Deployment
-
-Frontend: Hosted on Firebase
-
-Backend: Hosted on Vercel
-
-MongoDB Atlas: Used as cloud database
-
-Firebase: Used for authentication
-
-
-
-🏁 Final Notes
---> This project fulfills all the mandatory and challenge requirements, including:
-
-✅ CRUD operations
-✅ Firebase authentication
-✅ MongoDB integration
-✅ Private routes
-✅ Purchase counter
-✅ Search & filter
-✅ 404 page
-✅ Loading states
-✅ Responsive UI
-✅ Dark/Light theme toggle
-
-
+4. Run server:
+npm run start
 
 👨‍💻 Developer
 
 Monwar Hossan Himel
 📧 Email: monwarhossanhimel@gmail.com
 
-🌐 Portfolio: [https://drive.google.com/drive/u/0/home]
-💼 GitHub: [https://github.com/himel2535]
+🌐 Portfolio: https://drive.google.com/drive/u/0/home
+
+💼 GitHub: https://github.com/himel2535
