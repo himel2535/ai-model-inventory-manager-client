@@ -2,6 +2,7 @@
 
 A full-stack web application for managing AI model repositories — inspired by platforms like Hugging Face, Kaggle & Model Zoo.
 
+<div align="center"> <img src="https://i.ibb.co.com/Y78LpG8r/Screen-Shot-2025-11-19-at-2-05-53-PM.png" alt="project screenshot" width="80%" height="70%"/> </div>
 
 🔗 Live Links
 🚀 Live Website
