@@ -45,59 +45,38 @@ The platform simulates real-world AI model repositories like Hugging Face, Kaggl
 🔐 Authentication (Firebase)
 
 Email/Password Login & Register
-
 Google Sign-in
-
 Password Validation
-
 Persistent Login on reload
-
 Private routes
 
 ⚙️ CRUD Operations (MongoDB + Express)
 
 Add, Edit, Delete, View AI Models
-
 Only model creator can edit/delete their models
-
 Secure API & token-based actions
-
 <h4>🧾 Model Data Includes:</h4>
-
 Model Name
-
 Framework (TensorFlow / PyTorch / JAX etc.)
-
 Use Case
-
 Dataset
-
 Description
-
 Image
 
 🛒 Purchase System
 
 Buy any model
-
 Purchase count increases using $inc
-
 My Purchases Page
 
 🌓 UI Features
 
 Dark/Light theme toggle
-
 Latest Models Section (shows newest 6 models)
-
 Search & Filter (framework wise)
-
 My Models Page
-
 404 Page with animation
-
 Toast notifications
-
 Responsive for all screen sizes
 
 ---
@@ -106,31 +85,18 @@ Responsive for all screen sizes
 Frontend</h4>
 
 React.js
-
 React Router DOM
-
 Tailwind CSS
-
 DaisyUI
-
 Framer Motion
-
 Firebase
-
 Backend
-
 Node.js
-
 Express.js
-
-Database
-
+Databas
 MongoDB Atlas
-
 Hosting
-
 Firebase Hosting (Client)
-
 Vercel (Server)
 
 ---
@@ -138,38 +104,37 @@ Vercel (Server)
 
 <h4>📦 Dependencies (Client) :</h4>
 
-Main Dependencies  
-{
-  "@tailwindcss/vite": "^4.1.17",
-  "firebase": "^12.5.0",
-  "framer-motion": "^12.23.24",
-  "lottie-react": "^2.4.1",
-  "react": "^19.1.1",
-  "react-dom": "^19.1.1",
-  "react-icons": "^5.5.0",
-  "react-loader-spinner": "^8.0.0",
-  "react-router": "^7.9.5",
-  "react-toastify": "^11.0.5",
-  "react-tsparticles": "^2.12.2",
-  "sweetalert2": "^11.26.3",
-  "tsparticles": "^3.9.1"
-}
+📦 Main Dependencies--
 
-Dev Dependencies 
-{
-  "@eslint/js": "^9.36.0",
-  "@types/react": "^19.1.16",
-  "@types/react-dom": "^19.1.9",
-  "@vitejs/plugin-react": "^5.0.4",
-  "daisyui": "^5.4.7",
-  "eslint": "^9.36.0",
-  "eslint-plugin-react-hooks": "^5.2.0",
-  "eslint-plugin-react-refresh": "^0.4.22",
-  "globals": "^16.4.0",
-  "postcss": "^8.5.6",
-  "tailwindcss": "^4.1.17",
-  "vite": "^7.1.7"
-}
+Package Name
+@tailwindcss/vite
+firebase
+framer-motion
+lottie-react
+react
+react-dom
+react-icons
+react-loader-spinner
+react-router
+react-toastify
+react-tsparticles
+sweetalert2
+tsparticles
+
+🛠️ Dev Dependencies--
+Package Name
+@eslint/js
+@types/react
+@types/react-dom
+@vitejs/plugin-react
+daisyui
+eslint
+eslint-plugin-react-hooks
+eslint-plugin-react-refresh
+globals
+postcss
+tailwindcss
+vite
 
 ---
 
@@ -226,3 +191,5 @@ npm run start
 🌐 Portfolio: https://drive.google.com/drive/u/0/home
 
 💼 GitHub: https://github.com/himel2535
+
+🔗 **LinkedIn:** https://www.linkedin.com/in/monwar-hossan-himel/
