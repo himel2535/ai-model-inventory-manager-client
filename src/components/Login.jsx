@@ -56,8 +56,12 @@ const Login = () => {
     <div className="flex flex-col gap-12 items-center justify-center mx-4">
       <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center mt-14 ">
         <span className="heading-text-dark-aware">Login for</span> <br />
-        <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
-          AI Model Inventory Manager
+        <span className="flex flex-wrap justify-center gap-x-3">
+          {"AI Model Inventory Manager".split(" ").map((word, idx) => (
+            <span key={idx} className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
+              {word}
+            </span>
+          ))}
         </span>
       </h1>
 
@@ -69,6 +73,7 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
+                id="login-email"
                 className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full"
                 placeholder="Email"
                 required
@@ -80,6 +85,7 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
+                  id="login-password"
                   className="input rounded-lg focus:border-0 focus:outline-gray-200 block w-full pr-10"
                   placeholder="Password"
                   required
@@ -97,13 +103,38 @@ const Login = () => {
                 <a className="link link-hover">Forgot password?</a>
               </div>
 
-              <button
-                type="submit"
-                className="btn w-full mt-6 disabled:opacity-70 text-white"
-                disabled={submitting}
-              >
-                {submitting ? "Logging in..." : "Login"}
-              </button>
+              <div className="flex flex-col gap-2 mt-4">
+                <button
+                  type="submit"
+                  className="btn w-full text-white bg-gradient-to-r from-[#1CB5E0] to-[#000851] border-none"
+                  disabled={submitting}
+                >
+                  {submitting ? "Logging in..." : "Login"}
+                </button>
+                
+                <div className="grid grid-cols-2 gap-2">
+                  <button 
+                    type="button" 
+                    onClick={() => {
+                      document.getElementById('login-email').value = "user@demo.com";
+                      document.getElementById('login-password').value = "123456";
+                    }}
+                    className="btn btn-xs btn-outline"
+                  >
+                    Demo User
+                  </button>
+                  <button 
+                    type="button" 
+                    onClick={() => {
+                      document.getElementById('login-email').value = "admin@demo.com";
+                      document.getElementById('login-password').value = "123456";
+                    }}
+                    className="btn btn-xs btn-outline"
+                  >
+                    Demo Admin
+                  </button>
+                </div>
+              </div>
 
               {submitting && (
                 <div className="mt-4">

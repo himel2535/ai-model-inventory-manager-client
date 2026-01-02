@@ -3,7 +3,16 @@ import logo from "../assets/idea.png";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import fakeDP from "../assets/face.jpg";
-import { FcHome, FcMultipleInputs, FcViewDetails } from "react-icons/fc";
+import {
+  FcHome,
+  FcMultipleInputs,
+  FcViewDetails,
+  FcPlus,
+  FcConferenceCall,
+  FcAbout,
+  FcRating,
+  FcPieChart,
+} from "react-icons/fc";
 import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
@@ -73,22 +82,45 @@ const Navbar = () => {
           >
             <li>
               <NavLink to={"/"}>
-                <div className="flex items-center  gap-2">
+                <div className="flex items-center gap-2">
                   <FcHome /> <span>Home</span>
                 </div>
               </NavLink>
             </li>
             <li>
               <NavLink to={"/models"}>
-                <div className="flex items-center  gap-2">
-                  <FcViewDetails /> <span>View Models</span>
+                <div className="flex items-center gap-2">
+                  <FcViewDetails /> <span>Models</span>
                 </div>
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/add-model"}>
-                <div className="flex items-center  gap-2">
-                  <FcMultipleInputs /> <span>Add Model</span>
+              <NavLink to={"/leaderboard"}>
+                <div className="flex items-center gap-2">
+                  <FcRating /> <span>Leaderboard</span>
+                </div>
+              </NavLink>
+            </li>
+            {user && (
+              <li>
+                <NavLink to={"/dashboard"}>
+                  <div className="flex items-center gap-2">
+                    <FcPieChart /> <span>Dashboard</span>
+                  </div>
+                </NavLink>
+              </li>
+            )}
+            <li>
+              <NavLink to={"/community"}>
+                <div className="flex items-center gap-2">
+                  <FcConferenceCall /> <span>Community</span>
+                </div>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/about-us"}>
+                <div className="flex items-center gap-2">
+                  <FcAbout /> <span>About Us</span>
                 </div>
               </NavLink>
             </li>
@@ -98,26 +130,27 @@ const Navbar = () => {
         {/* // Logo Link */}
         <Link
           to={"/"}
-          className="flex items-center gap-2 md:text-xl font-bold ml-3 md:ml-0"
+          className="flex items-center gap-2 font-bold ml-3 md:ml-0"
         >
           <img className="w-10 h-10 rounded-full" src={logo} alt="" />
-          <h2 className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
-            MODELS INVENTORY
+          <h2 className="flex gap-1 md:gap-2 text-gray-800 dark:text-gray-100">
+            <span>MODELS</span>
+            <span>INVENTORY</span>
           </h2>
         </Link>
       </div>
 
       <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1 gap-6">
+        <ul className="menu menu-horizontal px-1 ">
           {/* Home */}
           <li>
             <NavLink
               to={"/"}
               className={({ isActive }) =>
-                `flex items-center gap-1 ${isActive ? "active" : ""}`
+                `flex items-center gap-2 ${isActive ? "active" : ""}`
               }
             >
-              <FcHome /> <span>Home</span>
+              <FcHome /><span>Home</span>
             </NavLink>
           </li>
 
@@ -126,24 +159,63 @@ const Navbar = () => {
             <NavLink
               to={"/models"}
               className={({ isActive }) =>
-                `flex items-center gap-1 ${isActive ? "active" : ""}`
+                `flex items-center gap-2 ${isActive ? "active" : ""}`
               }
             >
-              <FcViewDetails /> <span>View Models</span>
+              <FcViewDetails /><span>Models</span>
             </NavLink>
           </li>
 
-          {/* Add Model */}
+          {/* Leaderboard */}
           <li>
             <NavLink
-              to={"/add-model"}
+              to={"/leaderboard"}
               className={({ isActive }) =>
-                `flex items-center gap-1 ${isActive ? "active" : ""}`
+                `flex items-center gap-2 ${isActive ? "active" : ""}`
               }
             >
-              <FcMultipleInputs /> <span>Add Model</span>
+              <FcRating /> <span>Leaderboard</span>
             </NavLink>
           </li>
+
+          {/* Dashboard */}
+          {user && (
+            <li>
+              <NavLink
+                to={"/dashboard"}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 ${isActive ? "active" : ""}`
+                }
+              >
+                <FcPieChart /> <span>Dashboard</span>
+              </NavLink>
+            </li>
+          )}
+
+          {/* Community */}
+          <li>
+            <NavLink
+              to={"/community"}
+              className={({ isActive }) =>
+                `flex items-center gap-2 ${isActive ? "active" : ""}`
+              }
+            >
+              <FcConferenceCall /><span>Community</span>
+            </NavLink>
+          </li>
+
+          {/* About Us */}
+          <li>
+            <NavLink
+              to={"/about-us"}
+              className={({ isActive }) =>
+                `flex items-center gap-2 ${isActive ? "active" : ""}`
+              }
+            >
+              <FcAbout /><span>About Us</span>
+            </NavLink>
+          </li>
+
         </ul>
       </div>
 
@@ -193,10 +265,13 @@ const Navbar = () => {
                   <li className="text-xs">{user.email}</li>
                 </div>
                 <li className="mt-3">
-                  <Link to={"/model-purchase-page"}>Model Purchase page</Link>
+                  <Link to={"/dashboard"}>Dashboard Home</Link>
                 </li>
                 <li>
-                  <Link to={"/my-models"}>My Models page</Link>
+                  <Link to={"/dashboard/model-purchase-page"}>My Purchases</Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/my-models"}>My Uploaded Models</Link>
                 </li>
                 <li>
                   <button

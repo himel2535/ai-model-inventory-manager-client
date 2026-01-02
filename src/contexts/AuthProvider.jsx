@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
 
-  const authInfo = {
+  const authInfo = React.useMemo(() => ({
     createUser,
     signInUser,
     signInWithGoogle,
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
     user,
     loading,
     setLoading,
-  };
+  }), [user, loading]);
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;
 };

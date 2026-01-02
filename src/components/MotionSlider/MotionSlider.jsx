@@ -57,6 +57,8 @@ const MotionSlider = () => {
 
   return (
     <div className="slider-area ">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 z-10 pointer-events-none"></div>
+      
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
@@ -66,13 +68,20 @@ const MotionSlider = () => {
           animate="center"
           exit="exit"
           transition={{
-            x: { type: "spring", stiffness: 100, damping: 20 },
-            opacity: { duration: 0.5 },
-            scale: { duration: 0.5 },
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.6 },
+            scale: { duration: 0.8, ease: "easeOut" },
           }}
-          className="motion-slide"
+          className="motion-slide overflow-hidden"
         >
-          <img src={images[imageIndex]} alt={`Slide ${imageIndex + 1}`} />
+          <motion.img 
+            initial={{ scale: 1.2 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 6, ease: "easeOut" }}
+            src={images[imageIndex]} 
+            alt={`Slide ${imageIndex + 1}`} 
+            className="w-full h-full object-cover"
+          />
         </motion.div>
       </AnimatePresence>
 

@@ -5,28 +5,34 @@ const Footer = () => {
     <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10 bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white ">
       {/* Main links */}
       <nav className="grid grid-flow-col gap-4">
-        <a className="link link-hover" href="#">
+        <a className="link link-hover" href="/about-us">
           About us
         </a>
-        <a className="link link-hover" href="#">
-          Contact
+        <a className="link link-hover" href="/community">
+          Community
         </a>
-        <a className="link link-hover" href="#">
-          Jobs
+        <a className="link link-hover" href="/leaderboard">
+          Leaderboard
         </a>
-        <a className="link link-hover" href="#">
-          Press kit
+        <a className="link link-hover" href="mailto:info@aimodels.com">
+          Contact: info@aimodels.com
         </a>
       </nav>
+
+      <div className="text-center text-sm opacity-80 max-w-md">
+        <p>123 Innovation Way, Tech Valley, CA 94043</p>
+        <p>Building the next generation of AI collaboration.</p>
+      </div>
 
       <nav>
         <div className="grid grid-flow-col gap-4">
           <a
-            href="YOUR_X_PROFILE_LINK"
+            href="https://x.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow us on X"
           >
+            {/* ... svg ... */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -44,7 +50,7 @@ const Footer = () => {
 
           {/* YouTube logo */}
           <a
-            href="YOUR_YOUTUBE_LINK"
+            href="https://youtube.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Watch us on YouTube"
@@ -62,7 +68,7 @@ const Footer = () => {
 
           {/* Facebook logo */}
           <a
-            href="YOUR_FACEBOOK_LINK"
+            href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Find us on Facebook"
@@ -100,10 +106,10 @@ const Footer = () => {
       {/* Copyright */}
       <aside>
         <p>
-          Copyright © {new Date().getFullYear()} - All rights reserved by **AI
-          Models Inventory Manager** .
+          Copyright © {new Date().getFullYear()} - **MODELS INVENTORY** . All rights reserved.
         </p>
       </aside>
+
     </footer>
   );
 };

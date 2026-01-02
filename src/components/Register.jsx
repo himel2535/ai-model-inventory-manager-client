@@ -1,5 +1,4 @@
-import React, { use, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import LoadingLine from "./LoadingLine";
@@ -12,6 +11,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -53,7 +53,7 @@ const Register = () => {
       .then((result) => {
         console.log(result);
         updateUserProfile({ displayName, photoURL });
-        navigate("/");
+        navigate(location.state || "/");
         e.target.reset();
       })
       .catch((error) => {
@@ -72,7 +72,7 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
-        navigate("/");
+        navigate(location.state || "/");
       })
       .catch((error) => {
         console.log(error.massage);
@@ -87,8 +87,12 @@ const Register = () => {
     <div className=" flex flex-col gap-12 items-center justify-center mx-4">
       <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center mt-14 ">
         <span className="heading-text-dark-aware">Register for</span> <br />{" "}
-        <span className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
-          AI Model Inventory Manager
+        <span className="flex flex-wrap justify-center gap-x-3">
+          {"AI Model Inventory Manager".split(" ").map((word, idx) => (
+            <span key={idx} className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] bg-clip-text text-transparent">
+              {word}
+            </span>
+          ))}
         </span>
       </h1>
       <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">

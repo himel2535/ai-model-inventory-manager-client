@@ -8,8 +8,8 @@ const GetStartedSection = () => {
 
   // }
   return (
-    <section className="pb-8 mt-10 mb:mb-8 md:mx-8 lg:mx-10 mx-4">
-      <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold mb-1 heading-text-dark-aware text-center leading-relaxed ">
+    <section className="py-12 lg:mx-8 md:mx-6 mx-4">
+      <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold mb-14 heading-text-dark-aware text-center leading-relaxed ">
         Get Started
       </h1>
       <p className="text-lg mb-5 text-gray-500 text-center leading-relaxed">

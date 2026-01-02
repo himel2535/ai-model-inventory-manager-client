@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h2 align="center">🧠 AI Model Inventory Manager</h2>
 
 <div align="center"> <img src="https://i.ibb.co.com/Y78LpG8r/Screen-Shot-2025-11-19-at-2-05-53-PM.png" alt="project screenshot" width="60%" height="50%"/> </div>
@@ -193,3 +194,107 @@ npm run start
 💼 GitHub: https://github.com/himel2535
 
 🔗 **LinkedIn:** https://www.linkedin.com/in/monwar-hossan-himel/
+=======
+# 🧠 AI Model Inventory Manager
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=firebase)](https://ai-model-inventory-manag-45b01.web.app/)
+[![Server API](https://img.shields.io/badge/Server-Vercel-black?style=for-the-badge&logo=vercel)](https://github.com/himel2535/ai-model-inventory-manager-server)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+A professional, full-stack AI model repository and marketplace inspired by Hugging Face and Kaggle. This platform enables researchers and developers to catalog, explore, and purchase access to cutting-edge AI models.
+
+## 🚀 Key Features
+
+### 🏢 Advanced Dashboard System
+A centralized management hub for authenticated users:
+- **Dashboard Home**: Real-time analytics and performance charts.
+- **My Profile**: Full profile management (Update Name, Avatar).
+- **Inventory Management**: Securely Add, Update, and Delete your models.
+- **Purchase History**: Track all acquired models in a dedicated view.
+
+### 🔍 Dynamic Intelligence & Marketplace
+- **Frontier Search**: Instant real-time search by model name.
+- **Enhanced Filtering**: Categorize models by framework (TensorFlow, PyTorch, JAX, etc.).
+- **Smart Sorting**: Order models by 'Newest Created' or 'Community Popularity'.
+- **Skeleton Loaders**: Premium UI responsiveness using modern skeleton states.
+
+### 🏠 Comprehensive Landing Experience
+The home page features 10+ distinct sections designed for maximum conversion:
+1. **Interactive Banner**: High-impact hero with smooth animations and CTA.
+2. **Platform Stats**: Real-time metrics on community growth.
+3. **Latest Models**: Showcasing the 4 most recent frontier models.
+4. **Feature Showcase**: Detailed breakdown of platform capabilities.
+5. **Trusted Reviews**: Testimonials from leading AI researchers.
+6. **Smart FAQ**: Structured support for new users.
+7. **About Mission**: Deep dive into our vision for AI democratization.
+8. **Contact Center**: Professional lead generation and support form.
+9. **Newsletter Hub**: Weekly AI research and model updates delivered to inbox.
+10. **Get Started**: Clear path to community participation.
+
+### 🔐 Enterprise-Grade Security
+- **Firebase Authentication**: Secure Email/Password and Google Social Login.
+- **JWT Protection**: Backend routes protected via secure token verification.
+- **Role-Based Access**: Only creators can modify their own inventory.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React, Vite, Tailwind CSS, DaisyUI, Framer Motion |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB Atlas |
+| **Auth & Security** | Firebase Auth, JWT |
+| **Deployment** | Firebase Hosting (Client), Vercel (Server) |
+| **Utilities** | React Icons, React Toastify, Axios |
+
+---
+
+## 💻 Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/himel2535/ai-model-inventory-manager-client.git
+   cd ai-model-inventory-manager-client
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env.local` file in the root directory and add your Firebase configurations:
+   ```env
+   VITE_apiKey=your_api_key
+   VITE_authDomain=your_auth_domain
+   VITE_projectId=your_project_id
+   VITE_storageBucket=your_storage_bucket
+   VITE_messagingSenderId=your_messaging_sender_id
+   VITE_appId=your_app_id
+   ```
+
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 👨‍💻 Developer Profile
+
+**Monwar Hossan Himel**
+
+- 📧 **Email**: [monwarhossanhimel@gmail.com](mailto:monwarhossanhimel@gmail.com)
+- 🌐 **Portfolio**: [Visit Portfolio](https://himel-portfolio.web.app/)
+- 💼 **LinkedIn**: [monwar-hossan-himel](https://www.linkedin.com/in/monwar-hossan-himel/)
+- 🐙 **GitHub**: [@himel2535](https://github.com/himel2535)
+
+---
+
+## 📝 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+>>>>>>> 80927b4 (dashboard added)

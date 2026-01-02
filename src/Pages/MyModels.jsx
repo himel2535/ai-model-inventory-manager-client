@@ -1,11 +1,11 @@
-import React, { useEffect, useState, use } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import MyModelCard from "../components/MyModelCard";
 import MyModelTableRow from "../components/MyModelTableRow";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const MyModels = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [models, setModels] = useState([]);
 
@@ -42,8 +42,8 @@ const MyModels = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto  px-4 mb-10">
-      <h1 className=" mt-12 leading-relaxed lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 heading-text-dark-aware">
+    <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 py-10">
+      <h1 className="leading-relaxed lg:text-5xl md:text-4xl text-3xl font-extrabold text-center mb-10 heading-text-dark-aware">
         My Uploaded Models
       </h1>
 
