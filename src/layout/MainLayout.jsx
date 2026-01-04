@@ -6,7 +6,8 @@ import Footer from "../components/Footer";
 
 const MainLayout = () => {
   return (
-    <div className="bg-base-100 min-h-screen">
+    <div className="bg-base-100 min-h-screen overflow-x-hidden">
+
       <div className="fixed top-0 left-0 right-0 z-50 shadow-md bg-base-100/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <Navbar></Navbar>

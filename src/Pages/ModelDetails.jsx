@@ -24,27 +24,10 @@ const ModelDetails = () => {
           headers.authorization = `Bearer ${user.accessToken}`;
         }
         const res = await fetch(
-          `https://ai-model-inventory-manager-server.vercel.app/models/${id}`,
+          `${import.meta.env.VITE_API_URL}/models/${id}`,
           { headers }
         );
         
-        if (res.status === 401 && !user) {
-          // Mock data fallback for demonstration of public view
-          // This helps the user see the page is public even if their server is currently private
-          console.warn("Backend restricted access. Showing mock data for public view demo.");
-          setModel({
-            _id: id,
-            name: "Premium AI Model (Public Demo)",
-            framework: "TensorFlow",
-            useCase: "Natural Language Processing",
-            dataset: "Global Common Crawl",
-            description: "This is a public demonstration of the Model Details page. Even if your server currently requires a login $(\text{401 Unauthorized})$, the frontend is ready to show information to everyone. Private actions still require login.",
-            image: "https://img.freepik.com/free-vector/ai-technology-brain-background-vector-digital-transformation_53876-117714.jpg",
-            createdBy: "system@demo.com"
-          });
-          return;
-        }
-
         const data = await res.json();
         
         // Ensure data is a valid model object
@@ -90,7 +73,7 @@ const ModelDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://ai-model-inventory-manager-server.vercel.app/models/${model._id}`,
+          `${import.meta.env.VITE_API_URL}/models/${model._id}`,
           {
             method: "DELETE",
             headers: {
@@ -140,7 +123,7 @@ const ModelDetails = () => {
     };
 
     fetch(
-      `https://ai-model-inventory-manager-server.vercel.app/purchased-model/${model._id}`,
+      `${import.meta.env.VITE_API_URL}/purchased-model/${model._id}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -162,9 +145,6 @@ const ModelDetails = () => {
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
         <h2 className="text-2xl font-bold heading-text-dark-aware">Model not found</h2>
         <p className="text-gray-500">This model may be private or does not exist.</p>
-        {!user && (
-          <Link to="/login" className="btn btn-primary">Login to see more</Link>
-        )}
         <Link to="/models" className="btn btn-ghost">View All Models</Link>
       </div>
     );

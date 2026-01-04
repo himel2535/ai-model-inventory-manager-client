@@ -7,66 +7,100 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile as firebaseUpdateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
 
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);          // firebase user
+  const [dbUser, setDbUser] = useState(null);      // mongodb user
   const [loading, setLoading] = useState(true);
 
-  const createUser = (email, password) => {
-    setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
+  // ---------------- AUTH METHODS ----------------
 
-  const signInUser = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
+  const createUser = (email, password) =>
+    createUserWithEmailAndPassword(auth, email, password);
 
-  const signInWithGoogle = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
+  const signInUser = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
 
-  const updateUserProfile = (profile) => {
-    if (!auth.currentUser) return Promise.reject("No user logged in");
-    return firebaseUpdateProfile(auth.currentUser, profile).then(() =>
-      setUser({ ...auth.currentUser, ...profile })
-    );
-  };
+  const signInWithGoogle = () =>
+    signInWithPopup(auth, googleProvider);
 
-  const signOutUser = () => {
-    setLoading(true);
-    return signOut(auth);
-  };
+  const signOutUser = () => signOut(auth);
+
+  // ---------------- AUTH STATE ----------------
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+
+      if (currentUser?.email) {
+        try {
+          const token = await currentUser.getIdToken();
+
+          // 🔥 1. Sync user to MongoDB (WITH TOKEN)
+          await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              name: currentUser.displayName,
+              email: currentUser.email,
+              photo: currentUser.photoURL,
+            }),
+          });
+
+          // 🔥 2. Get full user from MongoDB
+          const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/users/${currentUser.email}`,
+            {
+              headers: {
+                authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const data = await res.json();
+          setDbUser(data); // 💥 THIS WAS MISSING
+
+        } catch (err) {
+          console.error("Auth sync error:", err);
+          setDbUser(null);
+        }
+      } else {
+        setDbUser(null);
+      }
+
       setLoading(false);
     });
-    return () => {
-      unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
+  // 🔥 Admin derived from MongoDB
+  const isAdmin = dbUser?.role === "admin";
 
-  const authInfo = React.useMemo(() => ({
+  const authInfo = {
+    user,
+    dbUser,
+    isAdmin,
+    loading,
+    setLoading,  // Add this back for components that use it
     createUser,
     signInUser,
     signInWithGoogle,
     signOutUser,
-    updateUserProfile,
-    user,
-    loading,
-    setLoading,
-  }), [user, loading]);
+  };
 
-  return <AuthContext value={authInfo}>{children}</AuthContext>;
+  return (
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

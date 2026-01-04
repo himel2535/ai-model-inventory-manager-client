@@ -12,7 +12,8 @@ const StatsSection = () => {
     return (
         <section className="py-12 bg-gradient-to-b from-transparent to-base-200/30">
             <div className="max-w-7xl mx-auto px-4 lg:px-8">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
                     {stats.map((stat, index) => (
                         <div key={index} className="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                             <div className={`text-4xl mb-4 ${stat.color}`}>

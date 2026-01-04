@@ -6,16 +6,37 @@ import {
   FcPaid, 
   FcAddDatabase, 
   FcHome,
-  FcManager
+  FcManager,
+  FcApproval,
+  FcCollaboration
 } from "react-icons/fc";
 
+import { AuthContext } from "../contexts/AuthContext";
+import { useContext } from "react";
+
 const Sidebar = () => {
-  const menuItems = [
+  const { isAdmin } = useContext(AuthContext);
+
+  const commonItems = [
     { name: "Dashboard Home", path: "/dashboard", icon: <FcPieChart /> },
     { name: "My Profile", path: "/dashboard/profile", icon: <FcManager /> },
+  ];
+
+  const userItems = [
+    { name: "Add Model", path: "/dashboard/add-model", icon: <FcAddDatabase /> },
     { name: "My Models", path: "/dashboard/my-models", icon: <FcParallelTasks /> },
     { name: "My Purchases", path: "/dashboard/model-purchase-page", icon: <FcPaid /> },
-    { name: "Add Model", path: "/dashboard/add-model", icon: <FcAddDatabase /> },
+  ];
+
+  const adminItems = [
+    { name: "Pending Models", path: "/dashboard/pending-models", icon: <FcApproval /> },
+    { name: "All Users", path: "/dashboard/all-users", icon: <FcCollaboration /> },
+    { name: "All Models", path: "/dashboard/all-models", icon: <FcParallelTasks /> },
+  ];
+
+  const menuItems = [
+    ...commonItems,
+    ...(isAdmin ? adminItems : userItems),
     { name: "Back to Home", path: "/", icon: <FcHome /> },
   ];
 

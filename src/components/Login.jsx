@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -6,8 +6,9 @@ import LoadingLine from "../components/LoadingLine";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const { signInWithGoogle, signInUser } = use(AuthContext);
-  const [submitting, setSubmitting] = useState(false);
+  const { signInWithGoogle, signInUser } = useContext(AuthContext);
+  const [emailLoading, setEmailLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,7 +20,7 @@ const Login = () => {
   // ----Email Sign In----
   const handleSignIn = (e) => {
     e.preventDefault();
-    setSubmitting(true);
+    setEmailLoading(true);
 
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -34,22 +35,50 @@ const Login = () => {
         console.log(error.message);
         toast.error("Invalid email or password");
       })
-      .finally(() => setSubmitting(false));
+      .finally(() => setEmailLoading(false));
   };
 
   // ---Google Sign In---
   const handleGoogleSignIn = () => {
-    setSubmitting(true);
+    setGoogleLoading(true);
     signInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
+      .then(async (result) => {
+        console.log("Google sign-in successful:", result.user);
+        
+        // Save user to database
+        const userInfo = {
+          name: result.user.displayName,
+          email: result.user.email,
+          photo: result.user.photoURL,
+          role: "user",
+        };
+
+        try {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          });
+
+          const data = await response.json();
+          console.log("User saved to database:", data);
+          
+          if (!response.ok) {
+            console.error("Database save failed:", data);
+          }
+        } catch (dbError) {
+          console.error("Database sync error:", dbError);
+        }
+        
         navigate(location.state || "/");
       })
       .catch((error) => {
         console.log(error.message);
         toast.error("Something went wrong!");
       })
-      .finally(() => setSubmitting(false));
+      .finally(() => setGoogleLoading(false));
   };
 
   return (
@@ -107,9 +136,9 @@ const Login = () => {
                 <button
                   type="submit"
                   className="btn w-full text-white bg-gradient-to-r from-[#1CB5E0] to-[#000851] border-none"
-                  disabled={submitting}
+                  disabled={emailLoading || googleLoading}
                 >
-                  {submitting ? "Logging in..." : "Login"}
+                  {emailLoading ? "Logging in..." : "Login"}
                 </button>
                 
                 <div className="grid grid-cols-2 gap-2">
@@ -136,7 +165,7 @@ const Login = () => {
                 </div>
               </div>
 
-              {submitting && (
+              {emailLoading && (
                 <div className="mt-4">
                   <LoadingLine />
                 </div>
@@ -148,9 +177,9 @@ const Login = () => {
           <button
             onClick={handleGoogleSignIn}
             className="btn mt-4 w-full disabled:opacity-70"
-            disabled={submitting}
+            disabled={googleLoading || emailLoading}
           >
-            {submitting ? (
+            {googleLoading ? (
               "Signing in with Google..."
             ) : (
               <>
@@ -186,7 +215,7 @@ const Login = () => {
             )}
           </button>
 
-          {submitting && (
+          {googleLoading && (
             <div className="mt-4">
               <LoadingLine />
             </div>

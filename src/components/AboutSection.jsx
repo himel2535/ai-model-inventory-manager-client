@@ -3,7 +3,8 @@ import React from "react";
 
 const AboutSection = () => {
   return (
-    <section className="py-12 lg:mx-8 md:mx-6 mx-4">
+    <section className="py-12 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
       <h2 className="lg:text-4xl md:text-3xl text-2xl text-center heading-text-dark-aware font-bold mb-14">
         About AI Models
       </h2>

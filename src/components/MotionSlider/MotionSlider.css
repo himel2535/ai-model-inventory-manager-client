@@ -12,16 +12,18 @@
 
 @media (max-width: 600px) {
     .slider-area {
-        height: 250px; 
+        height: 350px; 
     }
 }
+
 
 
 @media (max-width: 400px) {
     .slider-area {
-        height: 200px; 
+        height: 320px; 
     }
 }
+
 
 
 .motion-slide {

@@ -47,7 +47,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar py-1 lg:px-8 md:px-6 px-4 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
-      <div className="navbar-start ">
+      <div className="navbar-start gap-1 sm:gap-0">
         {/* // Mobile Menu Button */}
         <div className="dropdown">
           <div
@@ -66,13 +66,12 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           {/* ----Route (Mobile)---- */}
@@ -130,15 +129,17 @@ const Navbar = () => {
         {/* // Logo Link */}
         <Link
           to={"/"}
-          className="flex items-center gap-2 font-bold ml-3 md:ml-0"
+          className="flex items-center gap-1 sm:gap-2 font-bold ml-1 sm:ml-3 md:ml-0"
         >
-          <img className="w-10 h-10 rounded-full" src={logo} alt="" />
-          <h2 className="flex gap-1 md:gap-2 text-gray-800 dark:text-gray-100">
+          <img className="w-8 h-8 sm:w-10 sm:h-10 rounded-full" src={logo} alt="Logo" />
+          <h2 className="flex flex-col sm:flex-row gap-0 sm:gap-2 leading-tight text-gray-800 dark:text-gray-100 text-xs sm:text-base">
             <span>MODELS</span>
-            <span>INVENTORY</span>
+            <span className="hidden sm:inline">INVENTORY</span>
+            <span className="sm:hidden text-[10px] opacity-70">INV.</span>
           </h2>
         </Link>
       </div>
+
 
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1 ">

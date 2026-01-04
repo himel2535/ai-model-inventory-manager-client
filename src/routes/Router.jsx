@@ -17,6 +17,8 @@ import Community from "../Pages/Community";
 import AboutUs from "../Pages/AboutUs";
 import DashboardHome from "../Pages/DashboardHome";
 import Profile from "../Pages/Profile";
+import AllUsers from "../Pages/AllUsers";
+import PendingModels from "../Pages/PendingModels";
 
 export const router = createBrowserRouter([
   {
@@ -88,6 +90,14 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "pending-models",
+        element: <PendingModels />,
       },
     ],
   },

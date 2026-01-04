@@ -4,20 +4,21 @@ const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10 bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white ">
       {/* Main links */}
-      <nav className="grid grid-flow-col gap-4">
-        <a className="link link-hover" href="/about-us">
+      <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-6">
+        <a className="link link-hover text-sm font-medium" href="/about-us">
           About us
         </a>
-        <a className="link link-hover" href="/community">
+        <a className="link link-hover text-sm font-medium" href="/community">
           Community
         </a>
-        <a className="link link-hover" href="/leaderboard">
+        <a className="link link-hover text-sm font-medium" href="/leaderboard">
           Leaderboard
         </a>
-        <a className="link link-hover" href="mailto:info@aimodels.com">
-          Contact: info@aimodels.com
+        <a className="link link-hover text-sm font-medium" href="mailto:info@aimodels.com">
+          Contact
         </a>
       </nav>
+
 
       <div className="text-center text-sm opacity-80 max-w-md">
         <p>123 Innovation Way, Tech Valley, CA 94043</p>
