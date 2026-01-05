@@ -19,7 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://ai-model-inventory-manager-server.vercel.app/latest-models")
+    fetch(`${import.meta.env.VITE_API_URL}/latest-models`)
       .then((res) => res.json())
       .then((data) => {
         setLatestModels(data);

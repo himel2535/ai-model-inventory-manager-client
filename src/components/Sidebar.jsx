@@ -31,7 +31,6 @@ const Sidebar = () => {
   const adminItems = [
     { name: "Pending Models", path: "/dashboard/pending-models", icon: <FcApproval /> },
     { name: "All Users", path: "/dashboard/all-users", icon: <FcCollaboration /> },
-    { name: "All Models", path: "/dashboard/all-models", icon: <FcParallelTasks /> },
   ];
 
   const menuItems = [

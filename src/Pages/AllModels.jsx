@@ -18,8 +18,8 @@ const AllModels = () => {
   const fetchModels = (searchText = "") => {
     setLoading(true);
     const url = searchText || framework 
-      ? `https://ai-model-inventory-manager-server.vercel.app/search?search=${searchText}&framework=${framework}`
-      : "https://ai-model-inventory-manager-server.vercel.app/models";
+      ? `${import.meta.env.VITE_API_URL}/search?search=${searchText}&framework=${framework}`
+      : `${import.meta.env.VITE_API_URL}/models`;
 
     fetch(url)
       .then((res) => res.json())
@@ -79,7 +79,7 @@ const AllModels = () => {
                   setFramework(e.target.value);
                   // Trigger search immediately on filter change for better UX
                   setLoading(true);
-                  fetch(`https://ai-model-inventory-manager-server.vercel.app/search?search=&framework=${e.target.value}`)
+                  fetch(`${import.meta.env.VITE_API_URL}/search?search=&framework=${e.target.value}`)
                     .then(res => res.json())
                     .then(data => setModels(data))
                     .finally(() => setLoading(false));

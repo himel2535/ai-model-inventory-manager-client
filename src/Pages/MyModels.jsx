@@ -18,7 +18,7 @@ const MyModels = () => {
       try {
         const token = await user.getIdToken();
         const res = await fetch(
-          `https://ai-model-inventory-manager-server.vercel.app/my-models?email=${user.email}`,
+          `${import.meta.env.VITE_API_URL}/my-models?email=${user.email}`,
           {
             headers: {
               authorization: `Bearer ${token}`,

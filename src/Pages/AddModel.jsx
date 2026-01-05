@@ -25,7 +25,7 @@ const AddModel = () => {
       purchased: 0,
     };
 
-    fetch("https://ai-model-inventory-manager-server.vercel.app/models", {
+    fetch(`${import.meta.env.VITE_API_URL}/models`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
