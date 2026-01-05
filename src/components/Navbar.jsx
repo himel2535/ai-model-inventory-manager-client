@@ -7,7 +7,6 @@ import {
   FcHome,
   FcMultipleInputs,
   FcViewDetails,
-  FcPlus,
   FcConferenceCall,
   FcAbout,
   FcRating,
@@ -20,13 +19,9 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     signOutUser()
-      .then((result) => {
-        console.log(result);
-        // toast("Logout successfully")
-      })
+      .then(() => {})
       .catch((error) => {
-        console.log(error.massage);
-        toast(error.massage);
+        toast.error(error.message);
       });
   };
 
@@ -43,254 +38,130 @@ const Navbar = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  // ________________
+  const navLinks = [
+    { to: "/", label: "Home", icon: <FcHome /> },
+    { to: "/models", label: "Models", icon: <FcViewDetails /> },
+    { to: "/leaderboard", label: "Leaderboard", icon: <FcRating /> },
+    { to: "/community", label: "Community", icon: <FcConferenceCall /> },
+    { to: "/about-us", label: "About Us", icon: <FcAbout /> },
+  ];
+
+  if (user) {
+    navLinks.splice(3, 0, { to: "/dashboard", label: "Dashboard", icon: <FcPieChart /> });
+  }
 
   return (
-    <div className="navbar py-1 lg:px-8 md:px-6 px-4 min-h-0 z-1 shadow-sm glass-card max-w-7xl">
-      <div className="navbar-start gap-1 sm:gap-0">
-        {/* // Mobile Menu Button */}
-        <div className="dropdown">
-          <div
-            tabIndex={0}
-            role="button"
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center 
-                       cursor-pointer 
-                       bg-gradient-to-r from-[#1CB5E0] to-[#000851] 
-                       hover:scale-105 transition-transform duration-300 
-                       shadow-md"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          {/* ----Route (Mobile)---- */}
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <NavLink to={"/"}>
-                <div className="flex items-center gap-2">
-                  <FcHome /> <span>Home</span>
-                </div>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/models"}>
-                <div className="flex items-center gap-2">
-                  <FcViewDetails /> <span>Models</span>
-                </div>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/leaderboard"}>
-                <div className="flex items-center gap-2">
-                  <FcRating /> <span>Leaderboard</span>
-                </div>
-              </NavLink>
-            </li>
-            {user && (
-              <li>
-                <NavLink to={"/dashboard"}>
-                  <div className="flex items-center gap-2">
-                    <FcPieChart /> <span>Dashboard</span>
-                  </div>
+    <div className="sticky top-0 z-50 flex justify-center  px-4 w-full bg-opacity-0 pointer-events-none">
+      <div className="navbar pointer-events-auto bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-white/20 dark:border-gray-700/50 rounded-full px-6 py-2 shadow-2xl max-w-7xl w-full transition-all duration-300 hover:shadow-cyan-500/10 dark:hover:shadow-blue-900/20">
+        
+        {/* --- START: Logo --- */}
+        <div className="navbar-start w-auto mr-auto">
+          <Link to={"/"} className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#1CB5E0] to-[#000851] rounded-full blur opacity-40 group-hover:opacity-100 transition duration-500"></div>
+              <img className="relative w-10 h-10 rounded-full border-2 border-white dark:border-gray-800" src={logo} alt="Logo" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-black text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#1CB5E0] via-blue-600 to-[#000851] group-hover:to-cyan-500 transition-all duration-500">
+                Models<span className="font-light text-gray-800 dark:text-white">Inventory</span>
+              </span>
+            </div>
+          </Link>
+        </div>
+
+        {/* --- CENTER: Desktop Links --- */}
+        <div className="navbar-center hidden lg:flex">
+          <ul className="flex items-center gap-1 p-1 bg-gray-100/50 dark:bg-gray-800/50 rounded-full border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 relative overflow-hidden group
+                    ${isActive 
+                      ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-300 shadow-sm" 
+                      : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                    }`
+                  }
+                >
+                  <span className="text-lg opacity-80 group-hover:scale-110 transition-transform">{link.icon}</span>
+                  <span>{link.label}</span>
+                  {/* Animated Underline for non-active */}
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#1CB5E0] to-[#000851] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </NavLink>
               </li>
-            )}
-            <li>
-              <NavLink to={"/community"}>
-                <div className="flex items-center gap-2">
-                  <FcConferenceCall /> <span>Community</span>
-                </div>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/about-us"}>
-                <div className="flex items-center gap-2">
-                  <FcAbout /> <span>About Us</span>
-                </div>
-              </NavLink>
-            </li>
+            ))}
           </ul>
         </div>
 
-        {/* // Logo Link */}
-        <Link
-          to={"/"}
-          className="flex items-center gap-1 sm:gap-2 font-bold ml-1 sm:ml-3 md:ml-0"
-        >
-          <img className="w-8 h-8 sm:w-10 sm:h-10 rounded-full" src={logo} alt="Logo" />
-          <h2 className="flex flex-col sm:flex-row gap-0 sm:gap-2 leading-tight text-gray-800 dark:text-gray-100 text-xs sm:text-base">
-            <span>MODELS</span>
-            <span className="hidden sm:inline">INVENTORY</span>
-            <span className="sm:hidden text-[10px] opacity-70">INV.</span>
-          </h2>
-        </Link>
-      </div>
+        {/* --- END: Actions --- */}
+        <div className="navbar-end w-auto ml-auto flex items-center gap-3">
+          
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 group shadow-inner"
+            aria-label="Toggle theme"
+          >
+             <span className="text-xl group-hover:rotate-180 transition-transform duration-500">
+              {theme === "light" ? "☀️" : "🌙"}
+            </span>
+          </button>
 
-
-      <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1 ">
-          {/* Home */}
-          <li>
-            <NavLink
-              to={"/"}
-              className={({ isActive }) =>
-                `flex items-center gap-2 ${isActive ? "active" : ""}`
-              }
-            >
-              <FcHome /><span>Home</span>
-            </NavLink>
-          </li>
-
-          {/* View Models */}
-          <li>
-            <NavLink
-              to={"/models"}
-              className={({ isActive }) =>
-                `flex items-center gap-2 ${isActive ? "active" : ""}`
-              }
-            >
-              <FcViewDetails /><span>Models</span>
-            </NavLink>
-          </li>
-
-          {/* Leaderboard */}
-          <li>
-            <NavLink
-              to={"/leaderboard"}
-              className={({ isActive }) =>
-                `flex items-center gap-2 ${isActive ? "active" : ""}`
-              }
-            >
-              <FcRating /> <span>Leaderboard</span>
-            </NavLink>
-          </li>
-
-          {/* Dashboard */}
-          {user && (
-            <li>
-              <NavLink
-                to={"/dashboard"}
-                className={({ isActive }) =>
-                  `flex items-center gap-2 ${isActive ? "active" : ""}`
-                }
-              >
-                <FcPieChart /> <span>Dashboard</span>
-              </NavLink>
-            </li>
-          )}
-
-          {/* Community */}
-          <li>
-            <NavLink
-              to={"/community"}
-              className={({ isActive }) =>
-                `flex items-center gap-2 ${isActive ? "active" : ""}`
-              }
-            >
-              <FcConferenceCall /><span>Community</span>
-            </NavLink>
-          </li>
-
-          {/* About Us */}
-          <li>
-            <NavLink
-              to={"/about-us"}
-              className={({ isActive }) =>
-                `flex items-center gap-2 ${isActive ? "active" : ""}`
-              }
-            >
-              <FcAbout /><span>About Us</span>
-            </NavLink>
-          </li>
-
-        </ul>
-      </div>
-
-      {/* ---Ending Part--- */}
-      <div className="navbar-end gap-3">
-        <button
-          onClick={toggleTheme}
-          className={`
-            w-10 h-10 rounded-full flex items-center justify-center 
-            cursor-pointer transition-transform duration-300 
-          `}
-          aria-label="Toggle theme"
-        >
-          <span className="text-xl transition-transform duration-300 hover:scale-110">
-            {theme === "light" ? "☀️" : "🌙"}
-          </span>
-        </button>
-
-        {/* ---End of theme toggle--- */}
-
-        {/* ----Profile--- */}
-        <div>
-          {" "}
+          {/* Profile Dropdown */}
           {user ? (
-            <div className="dropdown dropdown-end z-50">
-              {/* ... (Dropdown trigger code) ... */}
-              <div
-                tabIndex={0}
-                role="button"
-                className="hover cursor-pointer !rounded-full btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 h-10 p-[2px] rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851] hover:scale-105 transition-transform duration-300">
-                  <img
-                    className="w-full h-full rounded-full"
-                    alt="User Avatar"
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="group">
+                <div className="relative w-11 h-11 rounded-full p-[2px] bg-gradient-to-r from-[#1CB5E0] to-[#000851] shadow-lg group-hover:shadow-cyan-500/50 transition-all duration-300">
+                   <img
+                    className="w-full h-full rounded-full border-2 border-white dark:border-gray-900 object-cover"
+                    alt="Usr"
                     src={user?.photoURL || fakeDP}
                   />
                 </div>
               </div>
               <ul
-                tabIndex="-1"
-                className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+                tabIndex={-1}
+                className="menu menu-sm dropdown-content bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-2xl z-[100] mt-4 w-60 p-4 shadow-2xl border border-gray-100 dark:border-gray-700 transform origin-top-right transition-all duration-200"
               >
-                {/* ... (Dropdown menu items) ... */}
-                <div className=" pb-3 border-b border-b-gray-200">
-                  <li className="text-sm font-bold">{user.displayName}</li>
-                  <li className="text-xs">{user.email}</li>
+                <div className="flex flex-col items-center mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+                  <div className="w-16 h-16 rounded-full p-[2px] bg-gradient-to-r from-[#1CB5E0] to-[#000851] mb-2">
+                    <img src={user?.photoURL || fakeDP} alt="Profile" className="w-full h-full rounded-full border-2 border-white dark:border-gray-900" />
+                  </div>
+                  <h3 className="font-bold text-lg text-gray-800 dark:text-white">{user.displayName}</h3>
+                  <p className="text-xs text-gray-500 font-medium bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full mt-1">{user.email}</p>
                 </div>
-                <li className="mt-3">
-                  <Link to={"/dashboard"}>Dashboard Home</Link>
-                </li>
+
+                <li><Link to="/dashboard" className="py-3 font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 rounded-xl mb-1">📊 Dashboard</Link></li>
                 <li>
-                  <Link to={"/dashboard/model-purchase-page"}>My Purchases</Link>
-                </li>
-                <li>
-                  <Link to={"/dashboard/my-models"}>My Uploaded Models</Link>
-                </li>
-                <li>
-                  <button
-                    onClick={handleSignOut}
-                    className="btn btn-xs text-left mt-2 text-white"
-                  >
-                    Logout
+                  <button onClick={handleSignOut} className="py-3 font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100 rounded-xl mt-1">
+                    🚪 Logout
                   </button>
                 </li>
               </ul>
             </div>
           ) : (
-            <Link to={"/login"} className="btn font-semibold  text-white">
-              {" "}
+            <Link to="/login" className="hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white font-bold shadow-lg shadow-blue-500/30 hover:shadow-cyan-500/50 hover:scale-105 active:scale-95 transition-all duration-300">
               Login
             </Link>
           )}
+
+           {/* Mobile Menu Button */}
+           <div className="dropdown dropdown-end lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+            </div>
+            <ul tabIndex={-1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+               {navLinks.map(link => (
+                 <li key={link.to}><NavLink to={link.to}>{link.label}</NavLink></li>
+               ))}
+               {!user && <li><Link to="/login">Login</Link></li>}
+            </ul>
+           </div>
         </div>
+
       </div>
     </div>
   );

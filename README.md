@@ -1,105 +1,108 @@
-# 🧠 AI Model Inventory Manager
+# AI Model Inventory Manager
 
-<div align="center"> 
-  <img src="https://i.ibb.co.com/Y78LpG8r/Screen-Shot-2025-11-19-at-2-05-53-PM.png" alt="project screenshot" width="60%" height="auto" style="border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); margin-bottom: 20px;"/> 
-</div>
+A comprehensive full-stack application for managing, discovering, and trading AI models. This platform serves as a hub for AI researchers and developers to share their models, track performance via a leaderboard, and purchase premium models.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=firebase)](https://ai-model-inventory-manag-45b01.web.app/)
-[![Server API](https://img.shields.io/badge/Server-Vercel-black?style=for-the-badge&logo=vercel)](https://github.com/himel2535/ai-model-inventory-manager-server)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+## ✨ Features
 
-A professional, full-stack AI model repository and marketplace inspired by Hugging Face and Kaggle. This platform enables researchers and developers to catalog, explore, and purchase access to cutting-edge AI models.
+### 🔐 Authentication & Security
+- **Secure Login/Signup**: Support for Email/Password and Google Social Login via Firebase.
+- **Role-Based Access Control**:
+  - **Admin**: Dedicated dashboard to manage all users, approve pending models, and oversee the platform.
+  - **User**: Standard access to browse, purchase, and upload models.
+- **JWT Protection**: Secured backend API routes using Firebase ID Tokens.
 
-## 🚀 Key Features
+### 🤖 Model Management
+- **Add Models**: Users can submit new AI models with details like name, framework, use case, and description.
+- **Model Approval Workflow**: New models go to a "Pending" state for Admin approval before going live.
+- **Edit/Delete**: Creators can update their model details or remove them.
+- **Model Details**: Rich details page for each model.
 
-### 🏢 Advanced Dashboard System
-A centralized management hub for authenticated users:
-- **Dashboard Home**: Real-time analytics and performance charts linked to backend data.
-- **My Profile**: Full profile management with editable display names and avatars.
-- **Inventory Management**: Securely Add, Update, and Delete your models.
-- **Purchase History**: Automatically track and access all acquired models.
+### 🏆 Leaderboard & Gamification
+- **Podium Design**: visually stunning top 3 ranking with "1st", "2nd", "3rd" podium stages.
+- **Sales Tracking**: Models are ranked by purchaser count.
+- **Top Contributors**: Recognition for users who upload the most high-quality models.
 
-### 🔍 Dynamic Intelligence & Marketplace
-- **Frontier Search**: Instant real-time search by model name.
-- **Enhanced Filtering**: Categorize models by framework (TensorFlow, PyTorch, JAX, etc.).
-- **Smart Sorting**: Order models by 'Newest Created' or 'Community Popularity'.
-- **Skeleton Loaders**: Premium UX using shimmer states for data fetching.
+### 💰 Marketplace Features
+- **Purchase System**: Users can "purchase" models (updates database purchase count).
+- **My Purchases**: Dashboard view to track all acquired models.
+- **My Models**: Dashboard view to manage personal submissions.
 
-### 🏠 Comprehensive Landing Experience (10+ Sections)
-The home page features 10+ distinct sections designed for maximum engagement:
-1. **Interactive Banner**: Hero section with smooth animations and scroll-to-content CTA.
-2. **Platform Stats**: Real-time metrics on community growth.
-3. **Latest Models**: Showcasing the 4 most recent frontier models.
-4. **Feature Showcase**: Detailed breakdown of platform capabilities.
-5. **Trusted Reviews**: Testimonials from leading AI researchers.
-6. **Smart FAQ**: Structured support for new users.
-7. **About Mission**: Deep dive into our vision for AI democratization.
-8. **Contact Center**: Professional lead generation and support form.
-9. **Newsletter Hub**: Weekly AI research updates delivered to inbox.
-10. **Get Started**: Clear final path to community participation.
+### 🎨 Modern UI/UX
+- **Glassmorphism Design**: Sleek, modern interface with semi-transparent elements and backdrop blur.
+- **Responsive Layout**: Fully optimized for Mobile, Tablet, and Desktop.
+- **Theme System**: Toggable Dark/Light mode with persistence.
+- **Animations**: Smooth transitions using Framer Motion (podium, hover effects).
+- **Consistent Branding**: Unified "Cyan-to-Blue" gradient theme across the site.
 
-### 🔐 Enterprise-Grade Security
-- **Firebase Authentication**: Secure Email/Password and Google Social Login.
-- **JWT Protection**: Backend routes protected via secure token verification.
-- **Role-Based Access**: Multi-layered protection ensuring only creators can modify their own inventory.
+### 📊 Additional Sections
+- **Home Page**: Features "Latest Frontier Models", Testimonials, Stats, and FAQ.
+- **Community**: Engagement sections for user feedback.
+- **Profile Management**: Profile page with "Edit Profile" capability (Name, Photo).
 
----
+## 🛠️ Technology Stack
 
-## 🛠️ Tech Stack
+### Frontend
+- **React.js (Vite)**: Fast and modern frontend framework.
+- **TailwindCSS**: Utility-first styling.
+- **DaisyUI**: Component library for rapid UI development.
+- **Framer Motion**: For complex animations (Leaderboard, Cards).
+- **React Router**: Client-side routing.
+- **Firebase Auth**: Authentication SDK.
 
-| Layer | Technologies |
-| :--- | :--- |
-| **Frontend** | React, Vite, Tailwind CSS, DaisyUI, Framer Motion |
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB Atlas |
-| **Auth & Security** | Firebase Auth (Client) & Admin SDK (Server) |
-| **Media** | React Icons, Lottie Animations, TsParticles |
+### Backend
+- **Node.js & Express.js**: Robust REST API.
+- **MongoDB**: NoSQL database for flexible data storage.
+- **JWT**: JSON Web Tokens for secure API communication.
 
----
+## 🚀 Getting Started
 
-## 💻 Installation & Setup
+### Prerequisites
+- Node.js (v14+)
+- MongoDB connection string
+- Firebase Project configuration
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/himel2535/ai-model-inventory-manager-client.git
-   cd ai-model-inventory-manager-client
-   ```
+### Installation
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/your-username/ai-model-inventory-manager.git
+    cd ai-model-inventory-manager
+    ```
 
-3. **Configure Environment Variables:**
-   Create a `.env.local` file and add your credentials:
-   ```env
-   VITE_apiKey=your_api_key
-   VITE_authDomain=your_auth_domain
-   VITE_projectId=your_project_id
-   VITE_storageBucket=your_storage_bucket
-   VITE_messagingSenderId=your_sender_id
-   VITE_appId=your_app_id
-   ```
+2.  **Server Setup**
+    ```bash
+    cd ai-model-inventory-manager-server
+    npm install
+    # Create .env file with DB_USER, DB_PASS, etc.
+    npm start
+    ```
 
-4. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
+3.  **Client Setup**
+    ```bash
+    cd ../ai-model-inventory-manager-client
+    npm install
+    # Create .env file with VITE_API_URL and Firebase keys
+    npm run dev
+    ```
 
----
+## 🌍 Environment Variables
 
-## 👨‍💻 Developer Profile
+**Client (.env)**
+```env
+VITE_API_URL=http://localhost:3000
+VITE_apiKey=...
+VITE_authDomain=...
+VITE_projectId=...
+VITE_storageBucket=...
+VITE_messagingSenderId=...
+VITE_appId=...
+```
 
-**Monwar Hossan Himel**
+**Server (.env)**
+```env
+DB_USER=...
+DB_PASS=...
+ACCESS_TOKEN_SECRET=...
+```
 
-- 📧 **Email**: [monwarhossanhimel@gmail.com](mailto:monwarhossanhimel@gmail.com)
-- 🌐 **Portfolio**: [Visit Portfolio](https://himel-portfolio.web.app/)
-- 💼 **LinkedIn**: [monwar-hossan-himel](https://www.linkedin.com/in/monwar-hossan-himel/)
-- 🐙 **GitHub**: [@himel2535](https://github.com/himel2535)
 
----
-
-## 📝 License
-
-This project is open-source and available under the [MIT License](LICENSE).

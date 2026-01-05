@@ -4,6 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import LoadingLine from "./LoadingLine";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { createUser, signInWithGoogle } = useContext(AuthContext);
@@ -54,7 +55,13 @@ const Register = () => {
       const result = await createUser(email, password);
       const token = await result.user.getIdToken();
 
-      // 2️⃣ Save / sync user to MongoDB (NO ROLE)
+      // 2️⃣ Update Firebase Profile (CRITICAL for AuthContext)
+      await updateProfile(result.user, {
+        displayName: displayName,
+        photoURL: photoURL
+      });
+
+      // 3️⃣ Save / sync user to MongoDB
       await fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: "PUT",
         headers: {
@@ -84,7 +91,24 @@ const Register = () => {
     setGoogleLoading(true);
 
     try {
-      await signInWithGoogle();
+      const result = await signInWithGoogle();
+      
+      // Save Google User to Database
+      const userInfo = {
+        name: result.user.displayName,
+        email: result.user.email,
+        photo: result.user.photoURL,
+        role: "user",
+      };
+
+      await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      });
+
       toast.success("Login successful!");
       navigate(location.state || "/");
     } catch (error) {

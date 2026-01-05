@@ -5,7 +5,7 @@ const ContactUsSection = () => {
   return (
     <section className="py-12 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
 
-      <h2 className="lg:text-4xl md:text-3xl text-2xl text-center heading-text-dark-aware font-bold mb-14">
+      <h2 className="lg:text-5xl md:text-4xl text-3xl font-bold text-center mb-14 leading-relaxed heading-text-dark-aware">
         Get In Touch
       </h2>
 

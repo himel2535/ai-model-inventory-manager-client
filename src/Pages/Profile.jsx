@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaUserEdit, FaSave, FaTimes, FaCamera, FaEnvelope, FaIdBadge } from "react-icons/fa";
+import { updateProfile } from "firebase/auth";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -42,7 +43,7 @@ const Profile = () => {
     const photo = e.target.photo.value;
 
     try {
-      // FIX: Use /users endpoint (not /users/:email) and include email in body
+      // 1. Update backend (MongoDB)
       const res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: "PUT",
         headers: {
@@ -57,6 +58,12 @@ const Profile = () => {
       });
 
       if (res.ok) {
+        // 2. Update Firebase Auth Profile (for consistency/persistence on frontend)
+        await updateProfile(user, {
+          displayName: name,
+          photoURL: photo
+        });
+
         toast.success("Profile updated successfully");
         setUserData({ ...userData, name, photo });
         setIsEditing(false);
@@ -86,7 +93,7 @@ const Profile = () => {
         className="max-w-3xl w-full bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden z-10 relative border border-gray-100 dark:border-gray-700"
       >
         {/* Header Gradient */}
-        <div className="h-32 bg-gradient-to-r from-blue-600 to-purple-600 relative">
+        <div className="h-32 bg-gradient-to-r from-[#1CB5E0] to-[#000851] relative">
            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
         </div>
 

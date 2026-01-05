@@ -38,15 +38,15 @@ const ModelPurchase = () => {
   if (loading) return <LoadingSpinner fullScreen={true} />;
 
   return (
-    <div className="max-w-6xl mx-auto  ">
-      <h1 className="mt-12 lg:text-4xl md:text-3xl text-2xl font-bold text-center mb-10 leading-relaxed heading-text-dark-aware">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      <h1 className="mt-14 lg:text-5xl md:text-4xl text-3xl font-bold text-center mb-14 leading-relaxed heading-text-dark-aware">
         Purchased Models
       </h1>
 
       {/* ---Desktop / Tablet View — Table--- */}
-      <div className="hidden lg:block  shadow-xl rounded-2xl overflow-hidden mb-10">
+      <div className="hidden lg:block shadow-2xl rounded-2xl overflow-hidden mb-10 border border-gray-100 dark:border-gray-700">
         <table className="table w-full border-collapse">
-          <thead className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white text-left">
+          <thead className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white text-left text-lg">
             <tr>
               <th className="py-3 px-4">Image</th>
               <th className="py-3 px-4">Name</th>

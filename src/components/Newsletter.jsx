@@ -9,7 +9,7 @@ const Newsletter = () => {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
         
         <div className="relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Stay Ahead of AI</h2>
+          <h2 className="lg:text-5xl md:text-4xl text-3xl font-bold mb-10 leading-relaxed">Stay Ahead of AI</h2>
           <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
             Get the latest open-source models and AI research delivered straight to your inbox every week.
           </p>

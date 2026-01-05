@@ -27,7 +27,7 @@ const Testimonials = () => {
     <section className="py-20 px-4 bg-base-200/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold heading-text-dark-aware mb-4">Loved by Innovators</h2>
+          <h2 className="lg:text-5xl md:text-4xl text-3xl font-bold text-center mb-14 leading-relaxed heading-text-dark-aware">Loved by Innovators</h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
             Join thousands of researchers and developers who are building the future with our tools.
           </p>
