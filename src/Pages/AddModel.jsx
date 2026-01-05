@@ -9,10 +9,18 @@ const AddModel = () => {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
 
-  const handleAddForm = (e) => {
+  const handleAddForm = async (e) => {
     setSubmitting(true);
-
     e.preventDefault();
+
+    if (!user) {
+      toast.error("You must be logged in to add a model");
+      setSubmitting(false);
+      return;
+    }
+
+    const token = await user.getIdToken();
+    
     const formData = {
       name: e.target.name.value,
       framework: e.target.framework.value,
@@ -29,12 +37,13 @@ const AddModel = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+
         toast("Successfully added new Model");
         navigate("/models");
       })

@@ -73,7 +73,7 @@ const UpdateModel = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+
         toast.success("Successfully Updated This Model!");
         navigate(`/model-details/${id}`);
       })
